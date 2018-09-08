@@ -5,17 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.simba1949</groupId>
-    <artifactId>MyBatis-Notes</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>Cache-LevelOne</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>Mybatis-SimpleExample</module>
-        <module>Mybatis-Interceptor</module>
-        <module>Mybatis-BasicUsage</module>
-        <module>Mybatis-AdvancedSearch</module>
-        <module>Mybatis-Generator</module>
-        <module>Mybatis-Cache</module>
-    </modules>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

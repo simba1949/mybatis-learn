@@ -749,5 +749,90 @@ concat('%', #{username}, '%')
 
 https://blog.csdn.net/SIMBA1949/article/details/81502604
 
+## Mybatis 缓存
 
+### 一级缓存
+
+> Mybatis的一级缓存存在于SqlSession的生命周期中，在同一个SqlSession中查询是，Mybatis会把执行的方法和参数通过算法生成缓存的键值，将键值和查询结果存入一个Map对象中。如果同一个SqlSession中执行的方法和参数一致，那么通过算法会生成相同的键值，当Map缓存对象中已经存在该键值时，则会返回缓存中的对象。
+>
+> 要刷新执行的方法和参数可在查询语句中设置 flushCache="true" 即可清除一级缓存。例如
+>
+> ```xml
+> <select id="selectByPrimaryKey" flushCache="true" resultMap="BaseResultMap">
+>   select id, user_name, user_password, user_email, create_time, user_info, head_img
+>   from sys_user
+>   where id = #{id,jdbcType=BIGINT}
+> </select>
+> ```
+
+### 二级缓存
+
+#### 二级缓存介绍
+
+> Mybatis的二级缓存非常强大，它不同于一级缓存只存在于 SqlSession 的生命周期中，而是可以理解为存在于 SqlSessionFactory 的生命周期中。虽然目前还没有接触过同时存在多个 SqlSessionFactory 的情况，但是可以知道，当存在多个 SqlSessionFactory 时，他们的缓存都是绑定在各自的对象中，缓存数据在一般情况是不可通的，只有使用 Redis 是，缓存数据才是共享的。
+
+#### 配置二级缓存
+
+在 Mybatis 的全局配置 settings 中有一个参数 cacheEnabled ，这个参数是二级缓存的全局开关，默认值为 true。
+
+```xml
+<settings>
+    <setting name="cacheEnabled" value="true"/>
+</settings>
+```
+
+Mybatis 的二级缓存是和命名空间绑定的，即二级缓存需要配置在 Mapper.xml 映射文件中，或者配置在 Mapper.java 接口中
+
+默认的二级缓存效果：
+
+* 映射语句文件中的所有 SELECT 语句将会被缓存
+* 映射语句文件中的所有 INSERT、UPDATE、DELETE 语句会刷新缓存
+* 缓存会使用 Least Recentlry Used （LRU，最近最少使用的）算法来收回
+* 根据时间表（如 no Flush Interval，没有刷新间隔），缓存不会给任何时间顺序来刷新
+* 缓存会存储在集合或者对象的1024个引用
+* 缓存会被视为 read/write （可读/可写）的，意味着对象检索不是共享的，而且可以安全地被调用者修改，而不干扰其他调用者或者线程所做的潜在修改
+
+在 Mapper.xml 配置
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.mapper.CountryMapper">
+  <!-- <cache/> 即可开启二级缓存-->
+  <cache/>
+</mapper>
+<!--
+	<cache eviction="" flushInterval="" size="" readOnly=""/>
+	eviction：收回策略
+		LRU(最近最少使用的)：移除最长时间不被使用的对象，这是默认值
+		FIFO(先进先出)：按对象进入缓存的顺序来移除
+		SOFT(软引用)：移除基于垃圾回收器状态和软引用规则的对象
+		WEAK(弱引用)：更积极地移除基于垃圾回收器和弱引用规则的对象
+	flushInterval（刷新间隔）：设置为任意正整数，默认值不设置，即为没有刷新间隔
+	size(引用数目)：设置为任意正整数，默认值为1024
+	readOnly（只读）：属性为true/false，默认值为false，只读的缓存会给所有调用者返回缓存对象的相同实例，因此这些对象不能修改，这提供了很重要的安全性能。可读写的缓存通过序列化返回缓存对象的拷贝，速度慢，但是安全。
+-->
+```
+
+在 Mapper.java 配置
+
+```java
+package top.simba1949.mapper;
+
+import org.apache.ibatis.annotations.CacheNamespace;
+
+/**
+ * @CacheNamespace 即可开启缓存
+ * @CacheNamespace(
+ *         eviction = FifoCache.class,
+ *         flushInterval = 6000,
+ *         size = 1024,
+ *         readWrite = true)
+ */
+@CacheNamespace
+public interface CountryMapper {
+    
+}
+
+```
 
