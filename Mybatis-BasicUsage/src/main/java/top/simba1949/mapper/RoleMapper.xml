@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.mapper.RoleMapper">
+
+    <!--一对一映射，通过别名设置-->
+    <select id="findAllByTypeAliases" resultType="RoleDto">
+        select
+          r.id id,
+          r.role_name roleName,
+          r.enabled enabled,
+          r.create_by createBy,
+          r.create_time createTime,
+          u.id "userDto.id",
+          u.user_name "userDto.username",
+          u.user_password "userDto.password",
+          u.user_email "userDto.userEmail",
+          u.user_info "userDto.userInfo",
+          u.head_img "userDto.headImg",
+          u.create_time "userDto.createTime"
+        from sys_role r
+        inner join sys_user_role ur on ur.role_id = r.id
+        inner join sys_user u on ur.user_id = u.id
+    </select>
+
+    <!--一对一映射，通过简单的对resultMap设置-->
+    <resultMap id="findAllByResultMapSimple" type="RoleDto">
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="enabled" column="enabled"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="userDto.id" column="user_id"/>
+        <result property="userDto.username" column="user_name"/>
+        <result property="userDto.password" column="user_password"/>
+        <result property="userDto.userEmail" column="user_email"/>
+        <result property="userDto.userInfo" column="user_info"/>
+        <result property="userDto.headImg" column="head_img"/>
+        <result property="userDto.createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="findAllByResultMapSimple" resultMap="findAllByResultMapSimple">
+        select
+          r.id,
+          r.role_name,
+          r.enabled,
+          r.create_by,
+          r.create_time,
+          u.id user_id,
+          u.user_name user_name,
+          u.user_password user_password,
+          u.user_email user_email,
+          u.user_info user_info,
+          u.head_img head_img,
+          u.create_time create_time
+        from sys_role r
+        inner join sys_user_role ur on ur.role_id = r.id
+        inner join sys_user u on ur.user_id = u.id
+    </select>
+
+    <!--一对一映射，通过association对resultMap设置-->
+    <resultMap id="findAllByResultMapAssociation" type="top.simba1949.common.RoleDto">
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="enabled" column="enabled"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <association property="userDto" columnPrefix="user_" javaType="top.simba1949.common.UserDto">
+            <id property="id" column="id"/>
+            <result property="username" column="user_name"/>
+            <result property="password" column="user_password"/>
+            <result property="userEmail" column="user_email"/>
+            <result property="userInfo" column="user_info"/>
+            <result property="headImg" column="head_img"/>
+            <result property="createTime" column="create_time"/>
+        </association>
+    </resultMap>
+    <select id="findAllByResultMapAssociation" resultMap="findAllByResultMapAssociation">
+        select
+          r.id,
+          r.role_name,
+          r.enabled,
+          r.create_by,
+          r.create_time,
+          u.id user_id,
+          u.user_name user_user_name,
+          u.user_password user_user_password,
+          u.user_email user_user_email,
+          u.user_info user_user_info,
+          u.head_img user_head_img,
+          u.create_time user_create_time
+        from sys_role r
+        inner join sys_user_role ur on ur.role_id = r.id
+        inner join sys_user u on ur.user_id = u.id
+    </select>
+
+    <!--一对一映射，通过association中的resultMap对resultMap设置-->
+    <resultMap id="findAllByResultMapAssociationResultMap" type="top.simba1949.common.RoleDto">
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="enabled" column="enabled"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <association property="userDto" columnPrefix="user_" javaType="top.simba1949.common.UserDto" resultMap="top.simba1949.mapper.UserMapper.findAllUserDto"/>
+    </resultMap>
+    <select id="findAllByResultMapAssociationResultMap" resultMap="findAllByResultMapAssociationResultMap">
+        select
+          r.id,
+          r.role_name,
+          r.enabled,
+          r.create_by,
+          r.create_time,
+          u.id user_id,
+          u.user_name user_user_name,
+          u.user_password user_user_password,
+          u.user_email user_user_email,
+          u.user_info user_user_info,
+          u.head_img user_head_img,
+          u.create_time user_create_time
+        from sys_role r
+        inner join sys_user_role ur on ur.role_id = r.id
+        inner join sys_user u on ur.user_id = u.id
+    </select>
+</mapper>
