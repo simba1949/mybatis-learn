@@ -836,3 +836,109 @@ public interface CountryMapper {
 
 ```
 
+## Mybatis 插件开发
+
+Mybatis 允许在已映射语句执行过程中的某一点进行拦截调用。默认情况下，Mybatis 允许使用插件来拦截的接口和方法包括以下几个：
+
+1. Executor（update、query、flushStatements、commint、rollback、getTransaction、close、isClosed）
+2. ParameterHandler（getParameterObject、setParameters）
+3. ResultSetHandler（handleResultSets、handleCursorResultSets、handleOutputParameters）
+4. StatementHandler（prepare、parameterize、batch、update、query）
+
+### 拦截器接口介绍
+
+Mybatis 插件开发需要实现拦截器接口 Interceptor（org.apache.ibatis.plugin.Interceptor）
+
+接口详情
+
+```java
+public interface Interceptor {
+
+  Object intercept(Invocation invocation) throws Throwable;// 3
+
+  Object plugin(Object target);// 2 
+
+  void setProperties(Properties properties);// 1
+
+}
+```
+
+第一个方法： void setProperties(Properties properties);// 1
+
+拦截器配置
+
+```xml
+<!-- 插件 -->
+<plugins>
+    <plugin interceptor="top.simba1949.interceptor.MyInterceptor">
+        <property name="property" value="value"/>
+    </plugin>
+</plugins>
+```
+
+在配置拦截器时，plugin 的 interceptor 属性为拦截器实现类的全限定名，如果需要参数，可以再 plugin 标签内通过 property 标签设置，配置后的参数在拦截器初始化时会通过 setProperties 方法传递给拦截器。在拦截器中可以很方便的通过 Properties（properties.getProperty("key")方法） 取得配置的参数值
+
+第二个方法：Object plugin(Object target);// 2 
+
+该方法的参数 target 就是拦截器要拦截对象的，该方法会在创建被拦截的接口实现类时被调用。这个方法的实现很简单，通常实现如下：
+
+```java
+@Override
+public Object plugin(Object target) {
+    return Plugin.wrap(target,this);
+}
+```
+
+Plugin.wrap(target,this) 方法会自动判断拦截器的签名和被拦截器对象的接口是否匹配，只有匹配的情况下才会使用动态代理拦截目标对象。
+
+第三个方法：Object intercept(Invocation invocation) throws Throwable;// 3
+
+intercept 方法是 Mybatis 运行时要执行的拦截方法。通过该方法的参数 invocation 可以得到很多有用的信息，如下
+
+```java
+@Override
+public Object intercept(Invocation invocation) throws Throwable {
+    // 获取当前被拦截的对象
+    Object target = invocation.getTarget();
+    // 获取当前被拦截的方法
+    Method method = invocation.getMethod();
+    // 返回被拦截方法中的参数
+    Object[] args = invocation.getArgs();
+    // 执行被拦截对象真正的方法
+    Object result = invocation.proceed();
+    return result;
+}
+```
+
+当配置多个拦截器时，mybatis 会遍历所有的拦截器，按顺序执行拦截器的 plugin 方法，被拦截的对象就会被层层对象所代理。在执行拦截器对象的方法时，会一层层地调用拦截器，拦截器通过 invocation.proceed() 调用下层的方法，直到真正的方法执行。方法执行的结果会从最里面向外一层层返回，所有如果存在按顺序配置的 A、B、C 三个签名相同的拦截器，Mybatis 会按照 C>B>A>target.proceed()>A>B>C。如果 A、B、C签名不同，就会按照 Mybatis 拦截对象的逻辑执行。
+
+### 拦截器签名介绍
+
+拦截器除了实现拦截器接口外，还需要给实现类配置以下的拦截器注解
+
+@Intercepts和签名@Signature，这两个注解用来配置拦截器要拦截的接口的方法
+
+@Intercepts 注解中的属性是一个 @Signature 数组，可以在同一个拦截器中同时拦截不同的接口和方法
+
+````java
+@Intercepts({
+    @Signature(type = Executor.class,method = "query",args = {Object.class})
+})
+public class MyInterceptor implements Interceptor {}
+````
+
+@Signature 注解包含以下三个属性
+
+* type：设置拦截的接口，可选值为
+
+  ```
+  一、Executor.class (update/query/flushStatements/commit/rollback/getTransaction/close/isClosed)
+  二、ParameterHandler.class (getParameterObject/setParameters)
+  三、ResultSetHandler.class (handleResultSets/handleCursorResultSets/handleOutputParameters)
+  四、StatementHandler.class (prepare/parameterize/batch/update/query)
+  ```
+
+* method:设置拦截接口中的方法名，值为上面接口括号的参数
+
+* args：设置拦截器方法的参数类型的数组，通过方法名和参数类型可以确定唯一一个方法。
+

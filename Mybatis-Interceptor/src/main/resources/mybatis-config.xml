@@ -14,8 +14,7 @@
 
     <!-- 插件 -->
     <plugins>
-        <plugin interceptor="org.mybatis.example.ExamplePlugin">
-            <property name="someProperty" value="100"/>
+        <plugin interceptor="top.simba1949.interceptor.PageInterceptor">
         </plugin>
     </plugins>
 
