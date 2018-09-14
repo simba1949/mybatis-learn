@@ -3,7 +3,7 @@ package top.simba1949.common;
 import java.util.Date;
 
 /**
- * @author v_jiayytian@tencent.com
+ * @author simba1949@outlook.com
  * @date 2018/9/6 15:03
  */
 public class RoleDto {

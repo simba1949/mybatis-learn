@@ -14,7 +14,7 @@ import java.io.Reader;
 import java.util.List;
 
 /**
- * @author v_jiayytian@tencent.com
+ * @author simba1949@outlook.com
  * @date 2018/9/5 19:24
  */
 public class UserMapperTest {

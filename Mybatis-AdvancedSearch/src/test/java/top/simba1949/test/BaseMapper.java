@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
- * @author v_jiayytian@tencent.com
+ * @author simba1949@outlook.com
  * @date 2018/9/6 15:31
  */
 public class BaseMapper {

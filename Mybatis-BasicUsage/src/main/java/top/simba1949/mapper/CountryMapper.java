@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author v_jiayytian@tencent.com
+ * @author simba1949@outlook.com
  * @date 2018/9/6 16:21
  */
 public interface CountryMapper {

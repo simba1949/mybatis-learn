@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * @author v_jiayytian@tencent.com
+ * @author simba1949@outlook.com
  * @date 2018/9/6 10:47
  */
 public class UserDto {
