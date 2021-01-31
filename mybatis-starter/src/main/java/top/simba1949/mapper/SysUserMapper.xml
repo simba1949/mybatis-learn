@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.mapper.SysUserMapper">
+
+    <select id="selectAll" resultType="top.simba1949.model.SysUser">
+        select
+               id,
+               user_name username,
+               user_password userPassword,
+               user_email userEmail,
+               user_info userInfo,
+               head_img headImg,
+               create_time createTime
+        from sys_user
+    </select>
+
+</mapper>
