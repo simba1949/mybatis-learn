@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.simba1949.mapper.SysUserMapper">
-
     <select id="selectAll" resultType="top.simba1949.model.SysUser">
         select
                id,
@@ -16,4 +15,51 @@
         from sys_user
     </select>
 
+    <select id="get" resultType="top.simba1949.model.SysUser">
+        select
+            id,
+            user_name username,
+            user_password userPassword,
+            user_email userEmail,
+            user_info userInfo,
+            head_img headImg,
+            create_time createTime
+        from sys_user
+        where id = #{id}
+    </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
+            value(#{sysUser.username}, #{sysUser.userPassword}, #{sysUser.userEmail}, #{sysUser.userInfo}, #{sysUser.headImg}, #{sysUser.createTime})
+    </insert>
+
+    <update id="update">
+        update sys_user
+        <set>
+            <if test="null != sysUser">
+                <if test="null != sysUser.username and '' != sysUser.username">
+                    user_name = #{sysUser.username},
+                </if>
+                <if test="null != sysUser.userPassword and '' != sysUser.userPassword">
+                    user_password = #{sysUser.userPassword},
+                </if>
+                <if test="null != sysUser.userEmail and '' != sysUser.userEmail">
+                    user_email = #{sysUser.userEmail},
+                </if>
+                <if test="null != sysUser.userInfo and '' != sysUser.userInfo">
+                    user_info = #{sysUser.userInfo},
+                </if>
+                <if test="null != sysUser.headImg and '' != sysUser.headImg">
+                    head_img = #{sysUser.headImg},
+                </if>
+                <if test="null != sysUser.createTime">
+                    create_time = #{sysUser.createTime},
+                </if>
+            </if>
+        </set>
+        where id = #{sysUser.id}
+    </update>
+    <delete id="delete">
+        delete from sys_user where id = #{id}
+    </delete>
 </mapper>
