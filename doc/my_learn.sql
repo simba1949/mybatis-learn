@@ -1,6 +1,8 @@
+-- 数据库
 create database my_learn character set utf8mb4;
 use my_learn;
 
+-- 表结构
 create table sys_privilege(
     id bigint auto_increment comment '权限ID' primary key,
     privilege_name varchar(50) null comment '权限名称',
@@ -35,3 +37,36 @@ create table sys_user_role(
     role_id bigint null comment '角色ID'
 )comment '用户角色关联表' charset = utf8;
 
+-- 数据管理
+-- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES ('1', 'admin', '123456', 'admin@onlying.cn', '管理员', null, '2018-08-05 10:48:00');
+INSERT INTO `sys_user` VALUES ('1001', 'test', '123456', 'test@onlying.cn', '测试用户', null, '2018-08-05 10:48:00');
+-- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+INSERT INTO `sys_role` VALUES ('1', '管理员', '1', '1', '2018-08-05 10:50:00');
+INSERT INTO `sys_role` VALUES ('2', '普通用户', '2', '2', '2018-08-05 10:51:00');
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------
+INSERT INTO `sys_user_role` VALUES ('1', '1');
+INSERT INTO `sys_user_role` VALUES ('1', '2');
+INSERT INTO `sys_user_role` VALUES ('1001', '2');
+-- ----------------------------
+-- Records of sys_privilege
+-- ----------------------------
+INSERT INTO `sys_privilege` VALUES ('1', '用户管理', '/users');
+INSERT INTO `sys_privilege` VALUES ('2', '角色管理', '/rooles');
+INSERT INTO `sys_privilege` VALUES ('3', '系统日志', '/logs');
+INSERT INTO `sys_privilege` VALUES ('4', '人员维护', '/persons');
+INSERT INTO `sys_privilege` VALUES ('5', '单位维护', '/companies');
+-- ----------------------------
+-- Records of sys_role_privilege
+-- ----------------------------
+INSERT INTO `sys_role_privilege` VALUES ('1', '1');
+INSERT INTO `sys_role_privilege` VALUES ('1', '2');
+INSERT INTO `sys_role_privilege` VALUES ('1', '3');
+INSERT INTO `sys_role_privilege` VALUES ('2', '4');
+INSERT INTO `sys_role_privilege` VALUES ('2', '5');

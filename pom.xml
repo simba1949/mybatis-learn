@@ -6,7 +6,14 @@
 
     <groupId>top.simba1949</groupId>
     <artifactId>mybatis-learn</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>jdbc-starter</module>
+        <module>mybatis-starter</module>
+        <module>mybatis-basic-practice</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.basic.mapper.SysUserMapper4Insert">
+
+    <resultMap id="findAllUserDto" type="top.simba1949.basic.model.SysUser">
+        <id property="id" column="id"/>
+        <result property="username" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userInfo" column="user_info"/>
+        <result property="headImg" column="head_img"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <!-- 简单的插入 -->
+    <insert id="insert">
+        insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
+        values(#{sysUser.username}, #{sysUser.userPassword}, #{sysUser.userEmail}, #{sysUser.userInfo}, #{sysUser.headImg}, #{sysUser.createTime})
+    </insert>
+
+    <!-- 插入后，将生成的id值设置到对象中，可以通过对象.getId() 获取id值 -->
+    <insert id="insertByJdbc" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
+        values(#{sysUser.username}, #{sysUser.userPassword}, #{sysUser.userEmail}, #{sysUser.userInfo}, #{sysUser.headImg}, #{sysUser.createTime})
+    </insert>
+
+    <!-- 通过 selectKey 将生成的id值设置到对象中，可以通过对象.getId() 获取id值 -->
+    <insert id="insertBySelectKey">
+        <selectKey keyProperty="id" order="AFTER" resultType="long">
+            select last_insert_id() as id
+        </selectKey>
+        insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
+        values(#{sysUser.username}, #{sysUser.userPassword}, #{sysUser.userEmail}, #{sysUser.userInfo}, #{sysUser.headImg}, #{sysUser.createTime})
+    </insert>
+
+    <!-- foreach实现批量插入 list -->
+    <insert id="insertBatch4List">
+        insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
+        values
+        <foreach collection="list" item="sysUser" separator=",">
+            (#{sysUser.username}, #{sysUser.userPassword}, #{sysUser.userEmail}, #{sysUser.userInfo}, #{sysUser.headImg}, #{sysUser.createTime})
+        </foreach>
+    </insert>
+    <!-- foreach实现批量插入 set -->
+    <insert id="insertBatch4Set">
+        insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
+        values
+        <foreach collection="set" item="sysUser" separator=",">
+            (#{sysUser.username}, #{sysUser.userPassword}, #{sysUser.userEmail}, #{sysUser.userInfo}, #{sysUser.headImg}, #{sysUser.createTime})
+        </foreach>
+    </insert>
+
+    <!-- foreach实现批量插入 map -->
+    <insert id="insertBatch4Map">
+        insert into sys_user(user_name, user_password)
+        values
+        <foreach collection="map" index="key" item="value" separator=",">
+            (#{key}, #{value})
+        </foreach>
+    </insert>
+    <!-- 静态值，静态方法插入 -->
+    <insert id="insertStatic">
+        <bind name="username" value="@top.simba1949.basic.model.User4Static@username"/>
+        <bind name="password" value="@top.simba1949.basic.model.User4Static@getPassword()"/>
+        insert into
+        sys_user(user_name,user_password)
+        values(#{username},#{password})
+    </insert>
+
+</mapper>

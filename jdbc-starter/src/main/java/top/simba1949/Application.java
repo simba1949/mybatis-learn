@@ -1,7 +1,7 @@
 package top.simba1949;
 
 import com.mysql.cj.jdbc.Driver;
-import top.simba1949.model.SysUser;
+import top.simba1949.basic.model.SysUser;
 
 import java.sql.*;
 import java.time.LocalDateTime;

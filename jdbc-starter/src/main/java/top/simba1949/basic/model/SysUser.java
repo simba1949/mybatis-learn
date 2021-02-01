@@ -1,4 +1,4 @@
-package top.simba1949.model;
+package top.simba1949.basic.model;
 
 import lombok.Data;
 
