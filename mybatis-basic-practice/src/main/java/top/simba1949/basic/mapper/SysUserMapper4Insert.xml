@@ -3,17 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.simba1949.basic.mapper.SysUserMapper4Insert">
-
-    <resultMap id="findAllUserDto" type="top.simba1949.basic.model.SysUser">
-        <id property="id" column="id"/>
-        <result property="username" column="user_name"/>
-        <result property="userPassword" column="user_password"/>
-        <result property="userEmail" column="user_email"/>
-        <result property="userInfo" column="user_info"/>
-        <result property="headImg" column="head_img"/>
-        <result property="createTime" column="create_time"/>
-    </resultMap>
-
     <!-- 简单的插入 -->
     <insert id="insert">
         insert into sys_user(user_name, user_password, user_email, user_info, head_img, create_time)
