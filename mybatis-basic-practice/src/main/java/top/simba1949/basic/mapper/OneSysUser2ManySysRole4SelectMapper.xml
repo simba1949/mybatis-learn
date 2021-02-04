@@ -55,7 +55,6 @@
         <collection property="roleList" ofType="top.simba1949.basic.model.One2ManySysRole" columnPrefix="role_"
                     resultMap="top.simba1949.basic.mapper.One2ManySysRoleMapper.allColumnMap"> </collection>
     </resultMap>
-
     <select id="findAllByResultMapCollectionSpanXml" resultMap="allColumnMapCollectionSpanXml">
         select
             u.id,
@@ -74,5 +73,4 @@
                  left join sys_user_role ur on u.id = ur.user_id
                  left join sys_role r on ur.role_id = r.id
     </select>
-
 </mapper>

@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.simba1949.basic.mapper.OneSysUser2OneSysRole4SelectMapper">
 
+    <!-- 一对一映射，通过别名设置-->
     <select id="findAllByTypeAliases" resultType="top.simba1949.basic.model.One2OneSysUser">
         select
                u.id,
@@ -23,6 +24,8 @@
                  left join sys_role r on ur.role_id = r.id
     </select>
 
+
+    <!-- 一对一映射，通过简单的 resultMap -->
     <resultMap id="allColumnMapSimple" type="top.simba1949.basic.model.One2OneSysUser">
         <id column="id" property="id"></id>
         <result column="user_name" property="username"></result>
@@ -38,7 +41,7 @@
         <result column="role_create_by" property="role.createBy"></result>
         <result column="role_create_time" property="role.createTime"></result>
     </resultMap>
-
+    <!-- 一对一映射，通过简单的 resultMap -->
     <select id="findAllByResultMapSimple" resultMap="allColumnMapSimple">
         select
             u.id,
@@ -58,6 +61,8 @@
                  left join sys_role r on ur.role_id = r.id
     </select>
 
+
+    <!-- 一对一映射，通过resultMap中 association 设置 -->
     <resultMap id="allColumnMapAssociation" type="top.simba1949.basic.model.One2OneSysUser">
         <id column="id" property="id"></id>
         <result column="user_name" property="username"></result>
@@ -75,7 +80,7 @@
             <result column="create_time" property="createTime"></result>
         </association>
     </resultMap>
-    
+    <!-- 一对一映射，通过resultMap中 association 设置 -->
     <select id="findAllByResultMapAssociation" resultMap="allColumnMapAssociation">
         select
             u.id,
@@ -95,6 +100,8 @@
                  left join sys_role r on ur.role_id = r.id
     </select>
 
+
+    <!-- 一对一映射，通过association中的resultMap跨xml映射 -->
     <resultMap id="allColumnMapAssociationSpanXml" type="top.simba1949.basic.model.One2OneSysUser">
         <id column="id" property="id"></id>
         <result column="user_name" property="username"></result>
@@ -108,7 +115,7 @@
                      javaType="top.simba1949.basic.model.One2OneSysRole"
                      resultMap="top.simba1949.basic.mapper.One2OneSysRoleMapper.allColumnMap"></association>
     </resultMap>
-
+    <!-- 一对一映射，通过association中的resultMap跨xml映射 -->
     <select id="findAllByResultMapAssociationSpanXml" resultMap="allColumnMapAssociationSpanXml">
         select
             u.id,
@@ -127,5 +134,4 @@
                  left join sys_user_role ur on u.id = ur.user_id
                  left join sys_role r on ur.role_id = r.id
     </select>
-
 </mapper>

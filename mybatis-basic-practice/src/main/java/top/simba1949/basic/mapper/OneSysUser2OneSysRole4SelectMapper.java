@@ -28,7 +28,7 @@ public interface OneSysUser2OneSysRole4SelectMapper {
     List<One2OneSysUser> findAllByResultMapAssociation();
 
     /**
-     * 一对一映射，通过association中的resultMap对resultMap设置
+     * 一对一映射，通过association中的resultMap跨xml映射
      * @return
      */
     List<One2OneSysUser> findAllByResultMapAssociationSpanXml();
