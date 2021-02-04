@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.basic.mapper.OneSysUser2OneSysRole4SelectMapper">
+
+    <select id="findAllByTypeAliases" resultType="top.simba1949.basic.model.One2OneSysUser">
+        select
+               u.id,
+               u.user_name userName,
+               u.user_password userPassword,
+               u.user_email userEmail,
+               u.user_info userInfo,
+               u.head_img headImg,
+               u.create_time createTime,
+               r.id "role.id",
+               r.role_name "role.roleName",
+               r.enabled "role.enabled",
+               r.create_by "role.createBy",
+               r.create_time "role.createTime"
+        from sys_user u
+                 left join sys_user_role ur on u.id = ur.user_id
+                 left join sys_role r on ur.role_id = r.id
+    </select>
+
+    <resultMap id="allColumnMapSimple" type="top.simba1949.basic.model.One2OneSysUser">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="username"></result>
+        <result column="user_password" property="userPassword"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_info" property="userInfo"></result>
+        <result column="head_img" property="headImg"></result>
+        <result column="create_time" property="createTime"></result>
+        <!-- 映射到 role 对象中 -->
+        <result column="role_id" property="role.id"></result>
+        <result column="role_role_name" property="role.roleName"></result>
+        <result column="role_enabled" property="role.enabled"></result>
+        <result column="role_create_by" property="role.createBy"></result>
+        <result column="role_create_time" property="role.createTime"></result>
+    </resultMap>
+
+    <select id="findAllByResultMapSimple" resultMap="allColumnMapSimple">
+        select
+            u.id,
+            u.user_name username,
+            u.user_password userPassword,
+            u.user_email userEmail,
+            u.user_info userInfo,
+            u.head_img headImg,
+            u.create_time createTime,
+            r.id role_id,
+            r.role_name role_role_name,
+            r.enabled role_enabled,
+            r.create_by role_create_by,
+            r.create_time role_create_time
+        from sys_user u
+                 left join sys_user_role ur on u.id = ur.user_id
+                 left join sys_role r on ur.role_id = r.id
+    </select>
+
+    <resultMap id="allColumnMapAssociation" type="top.simba1949.basic.model.One2OneSysUser">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="username"></result>
+        <result column="user_password" property="userPassword"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_info" property="userInfo"></result>
+        <result column="head_img" property="headImg"></result>
+        <result column="create_time" property="createTime"></result>
+        <!-- 映射到 role 对象中 -->
+        <association property="role" columnPrefix="role_" javaType="top.simba1949.basic.model.One2OneSysRole">
+            <id column="id" property="id"></id>
+            <result column="role_name" property="roleName"></result>
+            <result column="enabled" property="enabled"></result>
+            <result column="create_by" property="createBy"></result>
+            <result column="create_time" property="createTime"></result>
+        </association>
+    </resultMap>
+    
+    <select id="findAllByResultMapAssociation" resultMap="allColumnMapAssociation">
+        select
+            u.id,
+            u.user_name,
+            u.user_password,
+            u.user_email,
+            u.user_info,
+            u.head_img,
+            u.create_time,
+            r.id role_id,
+            r.role_name role_role_name,
+            r.enabled role_enabled,
+            r.create_by role_create_by,
+            r.create_time role_create_time
+        from sys_user u
+                 left join sys_user_role ur on u.id = ur.user_id
+                 left join sys_role r on ur.role_id = r.id
+    </select>
+
+    <resultMap id="allColumnMapAssociationSpanXml" type="top.simba1949.basic.model.One2OneSysUser">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="username"></result>
+        <result column="user_password" property="userPassword"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_info" property="userInfo"></result>
+        <result column="head_img" property="headImg"></result>
+        <result column="create_time" property="createTime"></result>
+        <!-- 跨XML 映射到 role 对象中 -->
+        <association property="role" columnPrefix="role_"
+                     javaType="top.simba1949.basic.model.One2OneSysRole"
+                     resultMap="top.simba1949.basic.mapper.One2OneSysRoleMapper.allColumnMap"></association>
+    </resultMap>
+
+    <select id="findAllByResultMapAssociationSpanXml" resultMap="allColumnMapAssociationSpanXml">
+        select
+            u.id,
+            u.user_name username,
+            u.user_password userPassword,
+            u.user_email userEmail,
+            u.user_info userInfo,
+            u.head_img headImg,
+            u.create_time createTime,
+            r.id role_id,
+            r.role_name role_role_name,
+            r.enabled role_enabled,
+            r.create_by role_create_by,
+            r.create_time role_create_time
+        from sys_user u
+                 left join sys_user_role ur on u.id = ur.user_id
+                 left join sys_role r on ur.role_id = r.id
+    </select>
+
+</mapper>

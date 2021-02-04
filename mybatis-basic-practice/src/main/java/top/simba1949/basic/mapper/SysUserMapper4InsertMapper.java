@@ -11,7 +11,7 @@ import java.util.Set;
  * @author anthony
  * @date 2021/2/1
  */
-public interface SysUserMapper4Insert {
+public interface SysUserMapper4InsertMapper {
     /**
      * 简单插入
      * @param sysUser

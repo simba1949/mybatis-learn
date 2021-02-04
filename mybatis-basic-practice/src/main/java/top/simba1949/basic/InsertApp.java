@@ -4,7 +4,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import top.simba1949.basic.mapper.SysUserMapper4Insert;
+import top.simba1949.basic.mapper.SysUserMapper4InsertMapper;
 import top.simba1949.basic.model.SysUser;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class InsertApp {
     }
 
     public static void insert(SqlSession sqlSession){
-        SysUserMapper4Insert mapper = sqlSession.getMapper(SysUserMapper4Insert.class);
+        SysUserMapper4InsertMapper mapper = sqlSession.getMapper(SysUserMapper4InsertMapper.class);
         // insert(mapper);
         // insertByJdbc(mapper);
         // nsertBySelectKey(mapper);
@@ -51,7 +51,7 @@ public class InsertApp {
      * 简单插入
      * @param mapper
      */
-    public static void insert(SysUserMapper4Insert mapper){
+    public static void insert(SysUserMapper4InsertMapper mapper){
         SysUser sysUser = new SysUser();
         sysUser.setUsername("username 4 insert");
         sysUser.setUserPassword("password 4 insert");
@@ -68,7 +68,7 @@ public class InsertApp {
      * 插入并返回主键信息
      * @param mapper
      */
-    public static void insertByJdbc(SysUserMapper4Insert mapper){
+    public static void insertByJdbc(SysUserMapper4InsertMapper mapper){
         SysUser sysUser = new SysUser();
         sysUser.setUsername("username 4 insertByJdbc");
         sysUser.setUserPassword("password 4 insertByJdbc");
@@ -86,7 +86,7 @@ public class InsertApp {
      *  待定，没有设置到值
      * @param mapper
      */
-    public static void insertBySelectKey(SysUserMapper4Insert mapper){
+    public static void insertBySelectKey(SysUserMapper4InsertMapper mapper){
         SysUser sysUser = new SysUser();
         sysUser.setUsername("username 4 insertBySelectKey");
         sysUser.setUserPassword("password 4 insertBySelectKey");
@@ -103,7 +103,7 @@ public class InsertApp {
      * 批量插入，list
      * @param mapper
      */
-    public static void insertBatch4List(SysUserMapper4Insert mapper){
+    public static void insertBatch4List(SysUserMapper4InsertMapper mapper){
         List<SysUser> list = Stream.iterate(0, i -> i + 1).limit(10)
                 .map(i -> {
                     SysUser sysUser = new SysUser();
@@ -122,7 +122,7 @@ public class InsertApp {
      * 批量插入，set
      * @param mapper
      */
-    public static void insertBatch4Set(SysUserMapper4Insert mapper){
+    public static void insertBatch4Set(SysUserMapper4InsertMapper mapper){
         Set<SysUser> set = Stream.iterate(0, i -> i + 1).limit(10)
                 .map(i -> {
                     SysUser sysUser = new SysUser();
@@ -141,7 +141,7 @@ public class InsertApp {
      * 批量插入，map
      * @param mapper
      */
-    public static void insertBatch4Map(SysUserMapper4Insert mapper){
+    public static void insertBatch4Map(SysUserMapper4InsertMapper mapper){
         Map<String, String> map = Stream.iterate(0, i -> i + 1).limit(10)
                 .map(i -> {
                     SysUser sysUser = new SysUser();
@@ -157,7 +157,7 @@ public class InsertApp {
      * 静态值，静态方法插入
      * @param mapper
      */
-    public static void insertStatic(SysUserMapper4Insert mapper){
+    public static void insertStatic(SysUserMapper4InsertMapper mapper){
         mapper.insertStatic();
     }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.simba1949.basic.mapper.SysUserMapper4Select">
+<mapper namespace="top.simba1949.basic.mapper.SysUserMapper4SelectMapper">
     <resultMap id="allColumnMap" type="top.simba1949.basic.model.SysUser">
         <id property="id" column="id"/>
         <result property="username" column="user_name"/>
