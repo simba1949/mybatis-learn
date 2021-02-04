@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
+ * select 一对一4种方式映射(association)
  * @author anthony
  * @date 2021/2/4
  */

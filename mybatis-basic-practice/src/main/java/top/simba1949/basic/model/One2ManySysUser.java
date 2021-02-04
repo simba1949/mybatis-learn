@@ -4,16 +4,15 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * select 一对一4种方式映射(association)
  * @author anthony
- * @date 2021/2/2
+ * @date 2021/2/4
  */
 @Data
-public class One2OneSysUser implements Serializable {
-
-    private static final long serialVersionUID = 5211841094596047578L;
+public class One2ManySysUser implements Serializable {
+    private static final long serialVersionUID = 4478073671257376439L;
 
     private Long id;
     private String username;
@@ -23,5 +22,5 @@ public class One2OneSysUser implements Serializable {
     private String headImg;
     private LocalDateTime createTime;
 
-    private One2OneSysRole role;
+    private List<One2ManySysRole> roleList;
 }

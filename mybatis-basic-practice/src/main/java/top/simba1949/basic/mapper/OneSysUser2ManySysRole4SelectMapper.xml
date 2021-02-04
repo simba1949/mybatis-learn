@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.basic.mapper.OneSysUser2ManySysRole4SelectMapper">
+
+    <!-- 一对多映射，通过简单的 collection 设置查询 -->
+    <resultMap id="allColumnMapCollectionSimple" type="top.simba1949.basic.model.One2ManySysUser">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="username"></result>
+        <result column="user_password" property="userPassword"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_info" property="userInfo"></result>
+        <result column="head_img" property="headImg"></result>
+        <result column="create_time" property="createTime"></result>
+        <!-- 此处注意：集合中的对象使用 ofType="" 不是 javaType="" -->
+        <collection property="roleList" ofType="top.simba1949.basic.model.One2ManySysRole" columnPrefix="role_">
+            <id column="id" property="id"></id>
+            <result column="role_name" property="roleName"></result>
+            <result column="enabled" property="enabled"></result>
+            <result column="create_by" property="createBy"></result>
+            <result column="create_time" property="createTime"></result>
+        </collection>
+    </resultMap>
+    <select id="findAllByResultMapCollectionSimple" resultMap="allColumnMapCollectionSimple">
+        select
+            u.id,
+            u.user_name,
+            u.user_password,
+            u.user_email,
+            u.user_info,
+            u.head_img,
+            u.create_time,
+            r.id role_id,
+            r.role_name role_role_name,
+            r.enabled role_enabled,
+            r.create_by role_create_by,
+            r.create_time role_create_time
+        from sys_user u
+                 left join sys_user_role ur on u.id = ur.user_id
+                 left join sys_role r on ur.role_id = r.id
+    </select>
+
+
+    <!-- 一对多映射，通过collection 跨 XML 查询 -->
+    <resultMap id="allColumnMapCollectionSpanXml" type="top.simba1949.basic.model.One2ManySysUser">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="username"></result>
+        <result column="user_password" property="userPassword"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_info" property="userInfo"></result>
+        <result column="head_img" property="headImg"></result>
+        <result column="create_time" property="createTime"></result>
+        <!-- 此处注意：集合中的对象使用 ofType="" 不是 javaType="" -->
+        <collection property="roleList" ofType="top.simba1949.basic.model.One2ManySysRole" columnPrefix="role_"
+                    resultMap="top.simba1949.basic.mapper.One2ManySysRoleMapper.allColumnMap"> </collection>
+    </resultMap>
+
+    <select id="findAllByResultMapCollectionSpanXml" resultMap="allColumnMapCollectionSpanXml">
+        select
+            u.id,
+            u.user_name,
+            u.user_password,
+            u.user_email,
+            u.user_info,
+            u.head_img,
+            u.create_time,
+            r.id role_id,
+            r.role_name role_role_name,
+            r.enabled role_enabled,
+            r.create_by role_create_by,
+            r.create_time role_create_time
+        from sys_user u
+                 left join sys_user_role ur on u.id = ur.user_id
+                 left join sys_role r on ur.role_id = r.id
+    </select>
+
+</mapper>
