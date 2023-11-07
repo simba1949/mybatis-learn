@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>infrastructure</module>
         <module>jdbc-quick-start</module>
         <module>mybatis-quick-start</module>
         <module>mybatis-interceptor</module>

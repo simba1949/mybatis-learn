@@ -1,4 +1,4 @@
-package vip.openpark.mybatis.quick.start.mapper;
+package vip.openpark.infrastructure.mapper;
 
 
 import vip.openpark.infrastructure.domain.RoleDO;
@@ -11,5 +11,4 @@ import java.util.List;
  */
 public interface RoleDOMapper {
 
-    List<RoleDO> findAll();
 }

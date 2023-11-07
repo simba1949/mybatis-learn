@@ -2,6 +2,7 @@ package vip.openpark.jdbc.quick.start.domain;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -10,7 +11,10 @@ import java.time.LocalDateTime;
  * @version 2023/11/6 17:16
  */
 @Data
-public class User implements Serializable {
+public class UserDO implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -5786786308237386825L;
+
     private Long id;
     private String code;
     private String username;

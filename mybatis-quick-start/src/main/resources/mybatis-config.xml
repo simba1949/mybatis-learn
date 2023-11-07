@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-        <setting name="logImpl" value="logback"/>
+        <!-- 使用日志组件：value 包括 SLF4J、LOG4J、LOG4J2、STDOUT_LOGGING-->
+        <!-- STDOUT_LOGGING 表示标准日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
     <!--实体类别名设置-->

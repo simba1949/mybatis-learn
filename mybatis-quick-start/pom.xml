@@ -24,7 +24,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
-            <scope>provided</scope>
+            <scope>system</scope>
         </dependency>
         <!--logback 1.4.x 支持JDK11，支持 Jakarta EE (jakarta.* namespace) -->
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
@@ -38,7 +38,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.1</version>
-            <scope>test</scope>
+            <scope>system</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->

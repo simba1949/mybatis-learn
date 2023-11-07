@@ -2,7 +2,8 @@ package vip.openpark.jdbc.quick.start;
 
 import com.mysql.cj.jdbc.Driver;
 import lombok.extern.slf4j.Slf4j;
-import vip.openpark.jdbc.quick.start.domain.User;
+import org.junit.jupiter.api.Test;
+import vip.openpark.jdbc.quick.start.domain.UserDO;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -13,16 +14,18 @@ import java.util.Objects;
 
 /**
  * @author anthony
- * @date 2021/1/31 9:28
+ * @version 2023/11/7 11:21
  */
 @Slf4j
-public class JdbcQuickStartApplication {
+public class JdbcQuickStartApplicationTest {
+
     private static final String DB_URL = "jdbc:mysql://172.17.35.120:3306/example?serverTimezone=Asia/Shanghai";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "123456";
 
-    public static void main(String[] args) {
-        List<User> result = new ArrayList<>();
+    @Test
+    public void exec(){
+        List<UserDO> result = new ArrayList<>();
 
         Connection connection = null; // 数据库连接
         Statement statement = null; // 数据库执行语句对象
@@ -48,7 +51,7 @@ public class JdbcQuickStartApplication {
                 log.info("id={}，code={}", resultSet.getString("id"), resultSet.getString(2));
 
                 // 封装成对象
-                User temp = new User();
+                UserDO temp = new UserDO();
                 temp.setId(resultSet.getLong("id"));
                 temp.setUsername(resultSet.getString("username"));
                 temp.setPassword(resultSet.getString("password"));
