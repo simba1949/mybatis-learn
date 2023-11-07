@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import vip.openpark.infrastructure.domain.RoleDO;
+import vip.openpark.mybatis.quick.start.domain.RoleDO;
 
 import java.io.IOException;
 import java.io.Reader;

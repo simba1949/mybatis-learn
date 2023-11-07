@@ -4,8 +4,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import top.simba1949.common.UserDto;
 import top.simba1949.mapper.UserMapper;
 
@@ -21,7 +21,7 @@ public class UserMapperTest {
 
     private static SqlSessionFactory sqlSessionFactory;
 
-    @BeforeClass
+    @BeforeAll
     public static void init() throws IOException {
         Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

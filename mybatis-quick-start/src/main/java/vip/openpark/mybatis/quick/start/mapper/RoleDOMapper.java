@@ -1,6 +1,6 @@
 package vip.openpark.mybatis.quick.start.mapper;
 
-import vip.openpark.infrastructure.domain.RoleDO;
+import vip.openpark.mybatis.quick.start.domain.RoleDO;
 
 import java.util.List;
 

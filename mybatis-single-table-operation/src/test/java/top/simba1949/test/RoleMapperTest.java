@@ -1,7 +1,7 @@
 package top.simba1949.test;
 
 import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import top.simba1949.common.RoleDto;
 import top.simba1949.mapper.RoleMapper;
 
