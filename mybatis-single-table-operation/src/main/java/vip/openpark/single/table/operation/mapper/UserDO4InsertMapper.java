@@ -6,7 +6,7 @@ import vip.openpark.single.table.operation.domain.UserDO;
  * @author anthony
  * @version 2023/11/7 14:43
  */
-public interface UserDOMapper {
+public interface UserDO4InsertMapper {
     int insertByCommon(UserDO userDO);
 
     int insertByJdbc(UserDO userDO);

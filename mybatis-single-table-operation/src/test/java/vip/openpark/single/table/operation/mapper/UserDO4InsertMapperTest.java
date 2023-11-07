@@ -18,7 +18,7 @@ import java.io.Reader;
  * @version 2023/11/7 14:49
  */
 @Slf4j
-public class UserDOMapper4InsertTest {
+public class UserDO4InsertMapperTest {
 
     private static SqlSessionFactory sqlSessionFactory;
 
@@ -40,10 +40,10 @@ public class UserDOMapper4InsertTest {
     @Test
     public void insertByCommon() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserDOMapper userDOMapper = sqlSession.getMapper(UserDOMapper.class);
+        UserDO4InsertMapper userDO4InsertMapper = sqlSession.getMapper(UserDO4InsertMapper.class);
 
         UserDO userDO = UserDO.builder().code("S-01").username("dufu").password("dufu123").build();
-        int affectRow = userDOMapper.insertByCommon(userDO);
+        int affectRow = userDO4InsertMapper.insertByCommon(userDO);
 
         Assertions.assertEquals(1, affectRow, "数据新增失败");
 
@@ -58,10 +58,10 @@ public class UserDOMapper4InsertTest {
     @Test
     public void insertByJdbc() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserDOMapper userDOMapper = sqlSession.getMapper(UserDOMapper.class);
+        UserDO4InsertMapper userDO4InsertMapper = sqlSession.getMapper(UserDO4InsertMapper.class);
 
         UserDO userDO = UserDO.builder().code("S-02").username("baijuyi").password("baijuyi123").build();
-        int affectRow = userDOMapper.insertByJdbc(userDO);
+        int affectRow = userDO4InsertMapper.insertByJdbc(userDO);
         log.info("新增数据后的id是：{}", userDO.getId());
 
         Assertions.assertEquals(1, affectRow, "数据新增失败");
@@ -77,10 +77,10 @@ public class UserDOMapper4InsertTest {
     @Test
     public void insertBySelectKey() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserDOMapper userDOMapper = sqlSession.getMapper(UserDOMapper.class);
+        UserDO4InsertMapper userDO4InsertMapper = sqlSession.getMapper(UserDO4InsertMapper.class);
 
         UserDO userDO = UserDO.builder().code("S-03").username("dumu").password("dumu123").build();
-        int affectRow = userDOMapper.insertBySelectKey(userDO);
+        int affectRow = userDO4InsertMapper.insertBySelectKey(userDO);
         log.info("新增数据后的id是：{}", userDO.getId());
 
         Assertions.assertEquals(1, affectRow, "数据新增失败");
@@ -96,9 +96,9 @@ public class UserDOMapper4InsertTest {
     @Test
     public void insertByStaticFieldAndMethod() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        UserDOMapper userDOMapper = sqlSession.getMapper(UserDOMapper.class);
+        UserDO4InsertMapper userDO4InsertMapper = sqlSession.getMapper(UserDO4InsertMapper.class);
 
-        int affectRow = userDOMapper.insertByStaticFieldAndMethod();
+        int affectRow = userDO4InsertMapper.insertByStaticFieldAndMethod();
         Assertions.assertEquals(1, affectRow, "数据新增失败");
 
         sqlSession.commit();

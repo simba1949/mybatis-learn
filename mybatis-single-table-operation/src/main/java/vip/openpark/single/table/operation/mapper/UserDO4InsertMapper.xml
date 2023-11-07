@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
-<mapper namespace="vip.openpark.single.table.operation.mapper.UserDOMapper">
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4InsertMapper">
 
     <!-- 普通新增数据 -->
     <insert id="insertByCommon">
