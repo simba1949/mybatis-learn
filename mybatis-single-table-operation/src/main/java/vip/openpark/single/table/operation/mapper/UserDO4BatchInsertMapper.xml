@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4BatchInsertMapper">
+    <!-- list集合：通过 foreach 实现批量插入，默认会将转换成key为( arg0、list、collection )的MAP -->
+    <insert id="batchInsertByList">
+        INSERT INTO user(code, username, password)
+        VALUES
+        <foreach collection="list" item="userDO" separator=",">
+            (#{userDO.code}, #{userDO.username}, #{userDO.password})
+        </foreach>
+    </insert>
+
+    <!-- list集合：通过 foreach 实现批量插入 -->
+    <insert id="batchInsertByListWithParam">
+        INSERT INTO user(code, username, password)
+        VALUES
+        <foreach collection="listParam" item="userDO" separator=",">
+            (#{userDO.code}, #{userDO.username}, #{userDO.password})
+        </foreach>
+    </insert>
+
+    <!-- set集合：通过 foreach 实现批量插入，默认会将转换成key为( arg0 和 collection )的MAP -->
+    <insert id="batchInsertBySet">
+        INSERT INTO user(code, username, password)
+        VALUES
+        <foreach collection="arg0" item="userDO" separator=",">
+            (#{userDO.code}, #{userDO.username}, #{userDO.password})
+        </foreach>
+    </insert>
+
+    <!-- set集合：通过 foreach 实现批量插入 -->
+    <insert id="batchInsertBySetWithParam">
+        INSERT INTO user(code, username, password)
+        VALUES
+        <foreach collection="setParam" item="userDO" separator=",">
+            (#{userDO.code}, #{userDO.username}, #{userDO.password})
+        </foreach>
+    </insert>
+
+    <!-- map集合：通过 foreach 实现批量插入，默认会将转换成key为( _parameter )的MAP -->
+    <insert id="batchInsertByMap">
+        INSERT INTO user(code, username)
+        VALUES
+        <foreach collection="_parameter" item="value" separator="," index="key">
+            (#{key}, #{value})
+        </foreach>
+    </insert>
+
+    <insert id="batchInsertByMapWithParam">
+        INSERT INTO user(code, username)
+        VALUES
+        <foreach collection="mapParam" item="value" separator="," index="key">
+            (#{key}, #{value})
+        </foreach>
+    </insert>
+</mapper>
