@@ -8,10 +8,10 @@ import top.simba1949.mapper.CountryMapper;
 import java.util.*;
 
 /**
- * @author simba1949@outlook.com
- * @date 2018/9/6 16:24
+ * @author anthony
+ * @version 2018/9/6 16:24
  */
-public class CountryMapperTest extends BaseMapper{
+public class CountryMapperTest extends BaseMapper {
 
     @Test
     public void insertCountryDtoTest(){

@@ -4,12 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-        <setting name="logImpl" value="log4j"/>
+        <!-- 使用日志组件：value 包括 SLF4J、LOG4J、LOG4J2、STDOUT_LOGGING-->
+        <!-- STDOUT_LOGGING 表示标准日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
     <!--实体类别名设置-->
     <typeAliases>
-        <package name="top.simba1949.common"/>
+        <package name="vip.openpark.single.table.operation.domain"/>
     </typeAliases>
 
     <!-- 插件(略) -->
@@ -18,19 +20,19 @@
     <environments default="development">
         <environment id="development">
             <!--事务管理的配置-->
-            <transactionManager type="JDBC"></transactionManager>
+            <transactionManager type="JDBC"/>
             <!--数据源的配置-->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://172.17.35.120:3306/example"/>
                 <property name="username" value="root"/>
-                <property name="password" value="19491001"/>
+                <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
 
     <!--映射器（mappers）-->
     <mappers>
-        <package name="top.simba1949.mapper"/>
+        <package name="vip.openpark.single.table.operation.mapper"/>
     </mappers>
 </configuration>

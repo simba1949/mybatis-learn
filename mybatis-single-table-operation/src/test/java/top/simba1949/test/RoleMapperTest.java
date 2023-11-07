@@ -11,7 +11,7 @@ import java.util.List;
  * @author simba1949@outlook.com
  * @date 2018/9/6 15:31
  */
-public class RoleMapperTest extends BaseMapper{
+public class RoleMapperTest extends BaseMapper {
 
 
     @Test

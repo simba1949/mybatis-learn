@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDOMapper">
+
+    <!-- 普通新增数据 -->
+    <insert id="insertByCommon">
+        INSERT INTO user(code, username, password)
+        values (#{code}, #{username}, #{password})
+    </insert>
+
+    <!-- 新增数据：使用JDBC方式返回主键自增的值，新增成功后会将 id 设置入参中 -->
+    <insert id="insertByJdbc" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(code, username, password)
+        values (#{code}, #{username}, #{password})
+    </insert>
+
+    <!--
+    使用selectKey返回主键的值
+        order：order属性的设置和使用的数据有关：
+            - mysql数据库，order设置为after，因为当前记录的主键值在insert语句执行成功后才能获取。
+            - 而在oracle数据库中，order的值要设置为before，因为oracle数据库需要从序列中获取值，然后将值作为左键插入数据。
+        selectKey 标签常见的数据库获取主键的方式：
+            - DB2使用 VALUES INENTITY_VAL_LOCAL()
+            - MYSQL使用 SELECT LAST_INSERT_ID()
+            - SQLSERVER使用 SELECT SCOPE_IDENTITY()
+            - CLOUDSCAPE使用 VALUES INENTITY_VAL_LOCAL()
+            - DERBY使用 VALUES INENTITY_VAL_LOCAL()
+            - HSQLDB使用 CALL IDENTITY()
+            - SYBASE使用 SELECT @@IDENTITY
+    -->
+    <!-- 新增数据：使用selectKey返回主键的值，新增成功后会将 id 设置入参中 -->
+    <insert id="insertBySelectKey">
+        INSERT INTO user(code, username, password)
+        values (#{code}, #{username}, #{password})
+        <selectKey keyColumn="id" resultType="long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- 新增数据：通过静态方法、静态属性进行新增数据 -->
+    <insert id="insertByStaticFieldAndMethod">
+        <bind name="code" value="@vip.openpark.single.table.operation.domain.UserStaticDO@CODE"/>
+        <bind name="username" value="@vip.openpark.single.table.operation.domain.UserStaticDO@getUsername()"/>
+        <bind name="password" value="@vip.openpark.single.table.operation.domain.UserStaticDO@getPassword()"/>
+        INSERT INTO user(code, username, password)
+        values (#{code}, #{username}, #{password})
+    </insert>
+</mapper>
