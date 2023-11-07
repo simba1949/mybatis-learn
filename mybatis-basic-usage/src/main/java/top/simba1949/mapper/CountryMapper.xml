@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.simba1949.mapper.CountryMapper">
+    
+    <insert id="insertCountryDto">
+        insert into
+          country(countryname,countrycode)
+        values(#{countryName},#{countryCode})
+    </insert>
+
+    <!--使用JDBC方式返回主键自增的值-->
+    <insert id="insertByJdbc" useGeneratedKeys="true" keyProperty="id">
+        insert into
+          country(countryname,countrycode)
+        values(#{countryName},#{countryCode})
+    </insert>
+
+    <!--使用selectKey返回主键的值-->
+    <insert id="insertBySelectKey">
+        insert into
+          country(countryname,countrycode)
+        values(#{countryName},#{countryCode})
+        <selectKey keyColumn="id" resultType="int" keyProperty="id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="getType" resultType="Map">
+        select countrycode,count(countrycode) number
+        from country group by countrycode
+    </select>
+
+    <!--foreach实现批量插入 list-->
+    <insert id="batchInsertParam">
+        insert into
+          country(countryname,countrycode)
+        values
+          <foreach collection="roleDOS" item="roleDO" separator=",">
+              (#{roleDO.countryName},#{roleDO.countryCode})
+          </foreach>
+    </insert>
+    <!--foreach实现批量插入 list-->
+    <insert id="batchInsert">
+        insert into
+        country(countryname,countrycode)
+        values
+        <foreach collection="list" item="roleDO" separator=",">
+            (#{roleDO.countryName},#{roleDO.countryCode})
+        </foreach>
+    </insert>
+
+    <!--foreach实现批量插入 通过map集合-->
+    <insert id="batchMapParam">
+        insert into
+        country(countryname,countrycode)
+        values
+        <foreach collection="maps" item="value" separator="," index="key">
+            (#{key},#{value})
+        </foreach>
+    </insert>
+    <!--foreach实现批量插入 通过map集合-->
+    <insert id="batchMap">
+        insert into
+        country(countryname,countrycode)
+        values
+        <foreach collection="map" item="val" separator="," index="key">
+            (#{key},#{val})
+        </foreach>
+    </insert>
+
+    <!--foreach实现批量插入 通过set集合-->
+    <insert id="batchSetParam">
+        insert into
+        country(countryname,countrycode)
+        values
+        <foreach collection="sets" item="roleDO" separator=",">
+            (#{roleDO.countryName},#{roleDO.countryCode})
+        </foreach>
+    </insert>
+    <!--foreach实现批量插入 通过set集合-->
+    <insert id="batchSet">
+        insert into
+        country(countryname,countrycode)
+        values
+        <foreach collection="set" item="roleDO" separator=",">
+            (#{roleDO.countryName},#{roleDO.countryCode})
+        </foreach>
+    </insert>
+
+    <insert id="insertStatic">
+    <bind name="name" value="@top.simba1949.common.CountryDto@SIMBA"/>
+    <bind name="code" value="@top.simba1949.common.CountryDto@getString()"/>
+         insert into
+          country(countryname,countrycode)
+        values(#{name},#{code})
+    </insert>
+</mapper>

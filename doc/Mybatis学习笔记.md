@@ -213,7 +213,7 @@
 ###### select 基本讲解
 
 ```xml
-<resultMap id="countryDto" type="top.simba1949.common.UserDto" extends="" autoMapping="true">
+<resultMap id="roleDO" type="top.simba1949.common.UserDto" extends="" autoMapping="true">
     <id property="id" javaType="Long" column="id" jdbcType="" typeHandler=""/>
     <result property="username" javaType="String" column="user_name" jdbcType="" typeHandler=""/>
     <result property="password" javaType="String" column="user_password"/>

@@ -11,12 +11,12 @@
 
     <modules>
         <module>jdbc-quick-start</module>
-        <module>Mybatis-SimpleExample</module>
-        <module>Mybatis-Interceptor</module>
-        <module>Mybatis-BasicUsage</module>
-        <module>Mybatis-AdvancedSearch</module>
-        <module>Mybatis-Generator</module>
-        <module>Mybatis-Cache</module>
+        <module>mybatis-quick-start</module>
+        <module>mybatis-interceptor</module>
+        <module>mybatis-basic-usage</module>
+        <module>mybatis-advanced-search</module>
+        <module>mybatis-generator</module>
+        <module>mybatis-cache</module>
     </modules>
 
     <properties>
