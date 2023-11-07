@@ -14,7 +14,7 @@
         <module>jdbc-quick-start</module>
         <module>mybatis-quick-start</module>
         <module>mybatis-interceptor</module>
-        <module>mybatis-basic-usage</module>
+        <module>mybatis-single-table-operation</module>
         <module>mybatis-advanced-search</module>
         <module>mybatis-generator</module>
         <module>mybatis-cache</module>
