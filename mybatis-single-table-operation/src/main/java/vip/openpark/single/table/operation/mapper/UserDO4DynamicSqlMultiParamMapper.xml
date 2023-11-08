@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4DynamicSqlMultiParamMapper">
+    <!-- 这里 Map 中 key 是数据库中的字段 -->
+    <select id="selectByMultiParamWithMap" resultType="vip.openpark.single.table.operation.domain.UserDO">
+        SELECT * FROM user
+        <where>
+            <foreach collection="_parameter" index="key" item="value" separator="and">
+                /* 这里 key 是数据中的字段，使用 ${} 获取，只是为了演示，不推荐生产使用，
+                如果需要入参是 MAP，请使用 selectByGetMultiParamWithMap */
+                ${key} LIKE CONCAT(CONCAT('%', #{value}), '%')
+            </foreach>
+        </where>
+    </select>
+
+    <!-- 这里 Map 中 key 其实是一个标识，用于取值，直接使用 #{key} 即可获取key的value值 -->
+    <select id="selectByGetMultiParamWithMap" resultType="vip.openpark.single.table.operation.domain.UserDO">
+        SELECT * FROM user
+        <where>
+            <if test="null != code and '' != code">
+                and code LIKE CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="null != username and '' != username">
+                and username LIKE CONCAT(CONCAT('%', #{username}), '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 多参数使用 @Param("") 注解标识 -->
+    <select id="selectByMultiParamWithParam" resultType="vip.openpark.single.table.operation.domain.UserDO">
+        SELECT * FROM user
+        <where>
+            <if test="null != codeParam and '' != codeParam">
+                and `code` LIKE CONCAT(CONCAT('%', #{codeParam}), '%')
+            </if>
+            <if test="null != usernameParam and '' != usernameParam">
+                and username = #{usernameParam}
+            </if>
+        </where>
+    </select>
+
+</mapper>
