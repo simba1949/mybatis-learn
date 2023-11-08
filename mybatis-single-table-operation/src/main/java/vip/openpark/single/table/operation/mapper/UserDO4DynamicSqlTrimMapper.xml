@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4DynamicSqlTrimMapper">
+
+    <update id="updateWithSetAndWhere">
+        UPDATE user
+        <set>
+            <if test="null != code and '' != code">
+                code = #{code},
+            </if>
+            <if test="null != username and '' != username">
+                username = #{username},
+            </if>
+            <if test="null != realName and '' != realName">
+                real_name = #{realName},
+            </if>
+            <if test="null != nickName and '' != nickName">
+                nick_name = #{nickName},
+            </if>
+            <if test="null != password and '' != password">
+                password = #{password},
+            </if>
+        </set>
+        <where>
+            <if test="null != id">
+                AND id = #{id}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateWithTrim">
+        UPDATE user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="null != code and '' != code">
+                code = #{code},
+            </if>
+            <if test="null != username and '' != username">
+                username = #{username},
+            </if>
+            <if test="null != realName and '' != realName">
+                real_name = #{realName},
+            </if>
+            <if test="null != nickName and '' != nickName">
+                nick_name = #{nickName},
+            </if>
+            <if test="null != password and '' != password">
+                password = #{password},
+            </if>
+        </trim>
+        <!--注意这里 AND |OR，OR要和管道符紧密相连-->
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            <if test="null != id">
+                OR id = #{id}
+            </if>
+        </trim>
+    </update>
+</mapper>
