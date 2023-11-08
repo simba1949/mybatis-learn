@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4UpdateMapper">
+
+    <update id="updateById">
+        UPDATE user
+        <set>
+            <if test="null != code and '' != code">
+                code = #{code},
+            </if>
+            <if test="null != username and '' != username">
+                username = #{username},
+            </if>
+            <if test="null != password and '' != password">
+                `password` = #{password}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>
