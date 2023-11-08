@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4DynamicSqlIfMapper">
+
+    <select id="select" resultType="vip.openpark.single.table.operation.domain.UserDO">
+        SELECT * FROM user
+        <where>
+            <if test="null != usernameStrParam and '' != usernameStrParam">
+                AND username = #{usernameStrParam}
+            </if>
+            <if test="null != genderListParam and genderListParam.size > 0">
+                AND gender IN
+                <foreach collection="genderListParam" open="(" close=")" item="item" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="null != birthdayStartLocalDateTimeParam">
+                AND birthday  <![CDATA[>=]]> #{birthdayStartLocalDateTimeParam}
+            </if>
+            <if test="null != birthdayEndLocalDateTimeParam">
+                AND birthday  <![CDATA[<]]> #{birthdayEndLocalDateTimeParam}
+            </if>
+            <if test="null != blEnableSetParam and blEnableSetParam.size > 0">
+                AND bl_enable IN
+                <foreach collection="blEnableSetParam" open="(" close=")" item="item" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="null != creatorMapParam and creatorMapParam.size > 0">
+                AND creator IN
+                <foreach collection="creatorMapParam" open="(" close=")" index="key" item="value" separator=",">
+                    #{value}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>
