@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.single.table.operation.mapper.UserDO4DynamicSqlChooseMapper">
+
+    <select id="selectWithCondition" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM user
+        <where>
+            <choose>
+                <when test="gender == 0">
+                    AND gender = 0
+                </when>
+                <when test="gender == 1">
+                    AND gender = 1
+                </when>
+                <otherwise>
+                    AND gender is NULL OR gender IN (0, 1)
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+</mapper>
