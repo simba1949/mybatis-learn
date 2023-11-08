@@ -9,19 +9,20 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import vip.openpark.single.table.operation.domain.UserDO;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author anthony
- * @version 2023/11/8 9:38
+ * @version 2023/11/8 9:53
  */
 @Slf4j
-public class UserDO4UpdateMapperTest {
+public class UserDO4DeleteMapperTest {
     private static SqlSession sqlSession;
-    private static UserDO4UpdateMapper userDO4UpdateMapper;
+    private static UserDO4DeleteMapper userDO4DeleteMapper;
 
     /**
      * junit5 中 @BeforeAll 修饰的必须要是 static 方法。
@@ -34,7 +35,7 @@ public class UserDO4UpdateMapperTest {
         Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         sqlSession = sqlSessionFactory.openSession();
-        userDO4UpdateMapper = sqlSession.getMapper(UserDO4UpdateMapper.class);
+        userDO4DeleteMapper = sqlSession.getMapper(UserDO4DeleteMapper.class);
     }
 
     /**
@@ -48,10 +49,10 @@ public class UserDO4UpdateMapperTest {
     }
 
     @Test
-    public void updateByIdTest() {
-        UserDO userDO = UserDO.builder().id(171L).code("UPDATE-01").username("UPDATE").password("UPDATE").build();
-        int affectRow = userDO4UpdateMapper.updateById(userDO);
+    public void deleteByIdsTest() {
+        List<Long> ids = Arrays.asList(162L, 163L, 164L);
+        int affectRow = userDO4DeleteMapper.deleteByIds(ids);
 
-        Assertions.assertEquals(1, affectRow, "数据更新失败");
+        Assertions.assertEquals(ids.size(), affectRow, "删除数据失败");
     }
 }
