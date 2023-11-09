@@ -1,4 +1,4 @@
-package vip.openpark.infrastructure.domain;
+package vip.openpark.advanced.search.domain;
 
 import lombok.Data;
 
@@ -8,16 +8,27 @@ import java.time.LocalDateTime;
 
 /**
  * @author anthony
- * @version 2018/9/5 16:48
+ * @version 2023/11/6 17:16
  */
 @Data
-public class RoleDO implements Serializable {
+public class UserDO implements Serializable {
     @Serial
-    private static final long serialVersionUID = 7454240971789116908L;
+    private static final long serialVersionUID = -5786786308237386825L;
 
     private Long id;
     private String code;
-    private String roleName;
+    private String username;
+    private String realName;
+    private String nickName;
+    private String password;
+    private Byte gender;
+    private LocalDateTime birthday;
+    private String nation;
+    private String countryName;
+    private String idCard;
+    private String address;
+    private String phone;
+    private String email;
 
     private Byte blEnable;
     private Byte blDelete;

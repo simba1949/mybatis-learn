@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.openpark.mybatis.quick.start.mapper.RoleDOMapper">
 
-    <select id="findAll" resultType="vip.openpark.infrastructure.domain.RoleDO">
+    <select id="findAll" resultType="vip.openpark.mybatis.quick.start.domain.RoleDO">
         select * from role
     </select>
 
