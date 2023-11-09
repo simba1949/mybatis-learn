@@ -27,7 +27,7 @@ public class PermissionDO implements Serializable {
     private String creator;
     private Long creatorId;
     private String creatorCode;
-    private LocalDateTime gmtModifier;
+    private LocalDateTime gmtModify;
     private String modifier;
     private Long modifierId;
     private String modifierCode;
