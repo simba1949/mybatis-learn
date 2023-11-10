@@ -1,5 +1,6 @@
-package vip.openpark.advanced.search.mapper.oneToOne;
+package vip.openpark.advanced.search.mapper;
 
+import com.alibaba.fastjson2.JSONArray;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,8 +10,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import vip.openpark.advanced.search.domain.OneToManyUserDO;
 import vip.openpark.advanced.search.domain.OneToOneUserDO;
-import vip.openpark.advanced.search.mapper.OneToOneUserDOMapper;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,12 +19,12 @@ import java.util.List;
 
 /**
  * @author anthony
- * @version 2023/11/9 21:11
+ * @version 2023/11/10 17:48
  */
 @Slf4j
-public class OneToOneMapperTest {
+public class OneToManyTest {
 	private static SqlSession sqlSession;
-	private static OneToOneUserDOMapper oneToOneUserDOMapper;
+	private static OneToManyUserDOMapper oneToManyUserDOMapper;
 
 	/**
 	 * junit5 中 @BeforeAll 修饰的必须要是 static 方法。
@@ -36,7 +37,7 @@ public class OneToOneMapperTest {
 		Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		sqlSession = sqlSessionFactory.openSession();
-		oneToOneUserDOMapper = sqlSession.getMapper(OneToOneUserDOMapper.class);
+		oneToManyUserDOMapper = sqlSession.getMapper(OneToManyUserDOMapper.class);
 	}
 
 	/**
@@ -50,38 +51,20 @@ public class OneToOneMapperTest {
 	}
 
 	@Test
-	public void selectWithOneXmlAndAliasTest() {
-		List<OneToOneUserDO> dataList = oneToOneUserDOMapper.selectWithOneXmlAndAlias();
+	public void selectWithOneXmlTest() {
+		List<OneToManyUserDO> dataList = oneToManyUserDOMapper.selectWithOneXml();
 		Assertions.assertNotNull(dataList, "数据查询异常");
 
 		log.info("查询到数据总记录数：{}", dataList.size());
-		dataList.forEach(ele -> log.info("{}", ele.toString()));
+		log.info("查询到数据：{}", JSONArray.toJSONString(dataList));
 	}
 
 	@Test
-	public void selectWithOneXmlAndResultMapAndAliasTest() {
-		List<OneToOneUserDO> dataList = oneToOneUserDOMapper.selectWithOneXmlAndResultMapAndAlias();
+	public void selectWithManyXmlTest() {
+		List<OneToManyUserDO> dataList = oneToManyUserDOMapper.selectWithManyXml();
 		Assertions.assertNotNull(dataList, "数据查询异常");
 
 		log.info("查询到数据总记录数：{}", dataList.size());
-		dataList.forEach(ele -> log.info("{}", ele.toString()));
-	}
-
-	@Test
-	public void selectWithOneXmlAndResultMapAndAssociationTest() {
-		List<OneToOneUserDO> dataList = oneToOneUserDOMapper.selectWithOneXmlAndResultMapAndAssociation();
-		Assertions.assertNotNull(dataList, "数据查询异常");
-
-		log.info("查询到数据总记录数：{}", dataList.size());
-		dataList.forEach(ele -> log.info("{}", ele.toString()));
-	}
-
-	@Test
-	public void selectWithManyXmlAndResultMapAndAssociationTest() {
-		List<OneToOneUserDO> dataList = oneToOneUserDOMapper.selectWithManyXmlAndResultMapAndAssociation();
-		Assertions.assertNotNull(dataList, "数据查询异常");
-
-		log.info("查询到数据总记录数：{}", dataList.size());
-		dataList.forEach(ele -> log.info("{}", ele.toString()));
+		log.info("查询到数据：{}", JSONArray.toJSONString(dataList));
 	}
 }

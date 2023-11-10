@@ -1,4 +1,4 @@
-package vip.openpark.advanced.search.mapper.singelTable;
+package vip.openpark.advanced.search.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import vip.openpark.advanced.search.domain.UserDO;
-import vip.openpark.advanced.search.mapper.UserDO4SingleTableMapper;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -21,7 +20,7 @@ import java.util.List;
  * @version 2023/11/9 19:44
  */
 @Slf4j
-public class UserDO4SingleTableMapperTest {
+public class SingleTableMapperTest {
     private static SqlSession sqlSession;
     private static UserDO4SingleTableMapper userDO4SingleTableMapper;
 
