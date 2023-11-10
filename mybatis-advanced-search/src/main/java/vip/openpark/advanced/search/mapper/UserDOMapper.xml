@@ -2,12 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="vip.openpark.advanced.search.mapper.PermissionDOMapper">
-    <resultMap id="all" type="vip.openpark.advanced.search.domain.PermissionDO">
+<mapper namespace="vip.openpark.advanced.search.mapper.UserDOMapper">
+    <resultMap id="all" type="vip.openpark.advanced.search.domain.UserDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="gender" jdbcType="TINYINT" property="gender"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+        <result column="nation" jdbcType="VARCHAR" property="nation"/>
+        <result column="country_name" jdbcType="VARCHAR" property="countryName"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
 
         <result column="bl_enable" jdbcType="TINYINT" property="blEnable"/>
         <result column="bl_delete" jdbcType="TINYINT" property="blDelete"/>
@@ -21,4 +31,5 @@
         <result column="modifier_id" jdbcType="BIGINT" property="modifierId"/>
         <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode"/>
     </resultMap>
+
 </mapper>
