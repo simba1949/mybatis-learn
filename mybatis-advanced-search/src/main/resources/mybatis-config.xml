@@ -56,7 +56,7 @@
             <dataSource type="POOLED">
                 <!-- 这里也可以覆盖 -->
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://192.168.8.35:3306/example"/>
+                <property name="url" value="jdbc:mysql://172.17.35.120:3306/example"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
                 <!-- 事务隔离级别，默认数据库事务隔离级别-->

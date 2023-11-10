@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="vip.openpark.advanced.search.mapper.RoleDOMapper">
-    <resultMap id="all" type="vip.openpark.advanced.search.domain.RoleDO">
+<mapper namespace="vip.openpark.advanced.search.mapper.OneToOneRoleDOMapper">
+    <resultMap id="all" type="vip.openpark.advanced.search.domain.OneToOneRoleDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>

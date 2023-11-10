@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.openpark.advanced.search.mapper.OneToOneUserDOMapper">
+
+    <!-- 这里 User 也需要使用别名，Role 也需要使用别名，双引号之间的半角点的前缀是 User 中的属性名 -->
+    <select id="selectWithOneXmlAndAlias" resultType="vip.openpark.advanced.search.domain.OneToOneUserDO">
+        SELECT u.id,
+               u.code,
+               u.username,
+               u.real_name realName,
+               u.nick_name nickName,
+               u.password,
+               r.id        "oneToOneRoleDO.id",
+               r.code      "oneToOneRoleDO.code",
+               r.name      "oneToOneRoleDO.name"
+        FROM user u
+                 left join user_role ur on u.id = ur.user_id
+                 left join role r on ur.role_id = r.id
+    </select>
+
+
+    <!-- 这里只有 Role 需要使用自定义别名，<result> 标签中的 property 属性中的半角点的前缀是 User 中的属性名 -->
+    <resultMap id="oneXmlAndResultMapAndAlias" type="vip.openpark.advanced.search.domain.OneToOneUserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+
+        <result column="oneToOneRoleDO_id" jdbcType="BIGINT" property="oneToOneRoleDO.id"/>
+        <result column="oneToOneRoleDO_code" jdbcType="VARCHAR" property="oneToOneRoleDO.code"/>
+        <result column="oneToOneRoleDO_name" jdbcType="VARCHAR" property="oneToOneRoleDO.name"/>
+    </resultMap>
+    <select id="selectWithOneXmlAndResultMapAndAlias" resultMap="oneXmlAndResultMapAndAlias">
+        SELECT u.id,
+               u.code,
+               u.username,
+               u.real_name,
+               u.nick_name,
+               u.password,
+               r.id   oneToOneRoleDO_id,
+               r.code oneToOneRoleDO_code,
+               r.name oneToOneRoleDO_name
+        FROM user u
+                 left join user_role ur on u.id = ur.user_id
+                 left join role r on ur.role_id = r.id
+    </select>
+
+
+    <!-- 这里只有 Role 需要使用别名，<result> 标签中的 property 属性中的半角点的前缀是 User 中的属性名 -->
+    <resultMap id="oneXmlAndResultMapAndAssociation" type="vip.openpark.advanced.search.domain.OneToOneUserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <!-- 通过 resultMap 标签的子标签 association 标签映射，columnPrefix 是自定义前缀，property是 User 中的属性，javaType 是全限定名 -->
+        <association columnPrefix="role_"
+                     property="oneToOneRoleDO"
+                     javaType="vip.openpark.advanced.search.domain.OneToOneRoleDO">
+            <id column="id" jdbcType="BIGINT" property="id"/>
+            <result column="code" jdbcType="VARCHAR" property="code"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+        </association>
+    </resultMap>
+    <select id="selectWithOneXmlAndResultMapAndAssociation" resultMap="oneXmlAndResultMapAndAssociation">
+        SELECT u.id,
+               u.code,
+               u.username,
+               u.real_name,
+               u.nick_name,
+               u.password,
+               r.id   role_id,
+               r.code role_code,
+               r.name role_name
+        FROM user u
+                 left join user_role ur on u.id = ur.user_id
+                 left join role r on ur.role_id = r.id
+    </select>
+
+
+    <!-- 这里只有 Role 需要使用别名，<result> 标签中的 property 属性中的半角点的前缀是 User 中的属性名 -->
+    <resultMap id="manyXmlAndResultMapAndAssociation" type="vip.openpark.advanced.search.domain.OneToOneUserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <!-- 这里的 resultMap 是 mybatis 自动添加的命名空间，加上resultMap.id 可以获取 resultMap -->
+        <association columnPrefix="role_"
+                     property="oneToOneRoleDO"
+                     javaType="vip.openpark.advanced.search.domain.OneToOneRoleDO"
+                     resultMap="vip.openpark.advanced.search.mapper.OneToOneRoleDOMapper.all"/>
+    </resultMap>
+    <select id="selectWithManyXmlAndResultMapAndAssociation" resultMap="manyXmlAndResultMapAndAssociation">
+        SELECT u.id,
+               u.code,
+               u.username,
+               u.real_name,
+               u.nick_name,
+               u.password,
+               r.id   role_id,
+               r.code role_code,
+               r.name role_name
+        FROM user u
+                 left join user_role ur on u.id = ur.user_id
+                 left join role r on ur.role_id = r.id
+    </select>
+</mapper>
