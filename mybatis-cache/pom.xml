@@ -15,8 +15,9 @@
 
     <modules>
         <module>mybatis-cache-with-mybatis-self</module>
-        <module>mybatis-cache-ehcache</module>
-        <module>mybatis-cache-redis</module>
+        <module>mybatis-custom-second-cache-with-ehcache</module>
+        <module>mybatis-custom-second-cache-with-redis</module>
+        <module>mybatis-custom-second-cache-with-jdk</module>
     </modules>
 
 </project>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- mybatis 官网文档地址：https://mybatis.org/mybatis-3/zh/configuration.html -->
+
+    <!-- 外部化配置 -->
+    <!--
+        这里的外部化配置文件需要加载到 mybatis 中，示例：new SqlSessionFactoryBuilder().build(reader, properties);
+        属性，可以直接赋值，也可以外部进行配置，同一属性名以最后加载的为准
+            1.通过方法参数传递的属性具有最高优先级，
+            2.resource/url 属性中指定的配置文件次之，
+            3.最低优先级的则是 properties 元素中指定的属性。-->
+
+    <!-- 设置 -->
+    <!-- mybatis 设置官方文档指南：https://mybatis.org/mybatis-3/zh/configuration.html#%E8%AE%BE%E7%BD%AE%EF%BC%88settings%EF%BC%89 -->
+    <settings>
+        <!-- 使用日志组件：value 包括 SLF4J、LOG4J、LOG4J2、STDOUT_LOGGING-->
+        <!-- STDOUT_LOGGING 表示标准日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!-- 实体类别名设置 -->
+    <typeAliases>
+        <!-- 推荐使用包配置 -->
+        <package name="vip.openpark.cache.ehcache.domain"/>
+    </typeAliases>
+
+    <!-- 类型处理器（略）-->
+    <!-- mybatis 类型处理器官方文档指南：https://mybatis.org/mybatis-3/zh/configuration.html#%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88typehandlers%EF%BC%89 -->
+    <!-- mybatis 枚举处理器官方文档指南：https://mybatis.org/mybatis-3/zh/configuration.html#%E5%A4%84%E7%90%86%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B -->
+
+    <!-- 对象工厂（略）-->
+
+    <!-- 插件(略) -->
+    <!-- mybatis 插件官方文档指南：https://mybatis.org/mybatis-3/zh/configuration.html#%E6%8F%92%E4%BB%B6%EF%BC%88plugins%EF%BC%89 -->
+
+    <!-- 配置环境 -->
+    <!-- 配置环境，可以配置多个环境，但是每个 SqlSessionFactory 实例只能选择一种环境。-->
+    <!-- mybatis 配置环境官方文档指南：https://mybatis.org/mybatis-3/zh/configuration.html#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88environments%EF%BC%89 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 事务管理的配置 type="[JDBC|MANAGED] -->
+            <!--
+            type=JDBC： 这个配置直接使用了 JDBC 的提交和回滚功能，它依赖从数据源获得的连接来管理事务作用域。
+                - <property name="skipSetAutoCommitOnClose" value="true"/>： 关闭连接时跳过自动提交，true表示跳过，false表示不跳过，默认 false
+            type=MANAGED：这个配置几乎没做什么。它从不提交或回滚一个连接，而是让容器来管理事务的整个生命周期。
+                - <property name="closeConnection" value="false"/>：提交或者回滚连接后，是否关闭连接，true表示关闭，false表示不关闭，默认 true
+            -->
+            <transactionManager type="JDBC">
+                <!-- 关闭连接时跳过自动提交，true表示跳过，false表示不跳过，默认 false -->
+                <property name="skipSetAutoCommitOnClose" value="true"/>
+            </transactionManager>
+            <!-- 数据源的配置 -->
+            <dataSource type="POOLED">
+                <!-- 这里也可以覆盖 -->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://192.168.8.35:3306/example"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+                <!-- 事务隔离级别，默认数据库事务隔离级别-->
+                <!--<property name="defaultTransactionIsolationLevel" value=""/>-->
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--映射器（mappers）-->
+    <mappers>
+        <package name="vip.openpark.cache.ehcache.mapper"/>
+    </mappers>
+</configuration>

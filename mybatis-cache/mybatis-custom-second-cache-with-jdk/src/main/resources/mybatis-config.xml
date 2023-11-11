@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 使用日志组件：value 包括 SLF4J、LOG4J、LOG4J2、STDOUT_LOGGING-->
+        <!-- STDOUT_LOGGING 表示标准日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- 一级缓存作用域，支持会话级别（SESSION）、语句级别（STATEMENT），默认是会话级别 -->
+        <!--<setting name="localCacheScope" value="SESSION"/>-->
+    </settings>
+
+    <!--实体类别名设置-->
+    <typeAliases>
+        <package name="vip.openpark.second.cache.jdk.domain"/>
+    </typeAliases>
+
+    <!-- 插件(略) -->
+
+    <!--配置环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--事务管理的配置-->
+            <transactionManager type="JDBC"/>
+            <!--数据源的配置-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://192.168.8.35:3306/example"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--映射器（mappers）-->
+    <mappers>
+        <package name="vip.openpark.second.cache.jdk.mapper"/>
+    </mappers>
+</configuration>
