@@ -34,7 +34,7 @@
     </select>
 
 
-    <!-- 通过 resultMap 标签的子标签 collection 配置 -->
+    <!-- 通过 resultMap 标签的子标签 collection 跨 XML 映射配置 -->
     <resultMap id="manyXml" type="vip.openpark.advanced.search.domain.OneToManyRoleDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
