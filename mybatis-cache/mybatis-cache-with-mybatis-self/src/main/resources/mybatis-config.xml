@@ -8,7 +8,7 @@
         <!-- STDOUT_LOGGING 表示标准日志 -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
         <!-- 一级缓存作用域，支持会话级别（SESSION）、语句级别（STATEMENT），默认是会话级别 -->
-        <setting name="localCacheScope" value="STATEMENT"/>
+        <!--<setting name="localCacheScope" value="SESSION"/>-->
     </settings>
 
     <!--实体类别名设置-->
