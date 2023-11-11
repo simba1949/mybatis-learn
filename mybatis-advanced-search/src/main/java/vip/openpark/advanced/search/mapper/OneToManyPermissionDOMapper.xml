@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="vip.openpark.advanced.search.mapper.RoleDOMapper">
-    <resultMap id="all" type="vip.openpark.advanced.search.domain.RoleDO">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.advanced.search.mapper.OneToManyPermissionDOMapper">
+    <resultMap id="all" type="vip.openpark.advanced.search.domain.OneToManyPermissionDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
 
         <result column="bl_enable" jdbcType="TINYINT" property="blEnable"/>
         <result column="bl_delete" jdbcType="TINYINT" property="blDelete"/>
@@ -20,11 +21,4 @@
         <result column="modifier_id" jdbcType="BIGINT" property="modifierId"/>
         <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode"/>
     </resultMap>
-
-    <sql id="allColumn">
-        `ID`, `CODE`, `NAME`,
-        BL_ENABLE, BL_DELETE, VERSION,
-        GMT_CREATE, CREATOR, CREATOR_ID, CREATOR_CODE,
-        GMT_MODIFY, MODIFIER, MODIFIER_ID, MODIFIER_CODE
-    </sql>
 </mapper>

@@ -3,21 +3,61 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
 <mapper namespace="vip.openpark.advanced.search.mapper.OneToManyRoleDOMapper">
-    <resultMap id="all" type="vip.openpark.advanced.search.domain.OneToManyRoleDO">
+
+    <!-- 通过 resultMap 标签的子标签 collection 配置 -->
+    <resultMap id="oneXml" type="vip.openpark.advanced.search.domain.OneToManyRoleDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
 
-        <result column="bl_enable" jdbcType="TINYINT" property="blEnable"/>
-        <result column="bl_delete" jdbcType="TINYINT" property="blDelete"/>
-        <result column="version" jdbcType="BIGINT" property="version"/>
-        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
-        <result column="creator" jdbcType="VARCHAR" property="creator"/>
-        <result column="creator_id" jdbcType="BIGINT" property="creatorId"/>
-        <result column="creator_code" jdbcType="VARCHAR" property="creatorCode"/>
-        <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify"/>
-        <result column="modifier" jdbcType="VARCHAR" property="modifier"/>
-        <result column="modifier_id" jdbcType="BIGINT" property="modifierId"/>
-        <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode"/>
+        <!-- 此处注意：集合中的对象使用 ofType="" 不是 javaType="" -->
+        <collection columnPrefix="permission_"
+                    property="permissionDOList"
+                    ofType="vip.openpark.advanced.search.domain.OneToManyPermissionDO">
+            <id column="id" jdbcType="BIGINT" property="id"/>
+            <result column="code" jdbcType="VARCHAR" property="code"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="url" jdbcType="VARCHAR" property="url"/>
+        </collection>
     </resultMap>
+    <select id="selectWithOneXml" resultMap="oneXml">
+        SELECT r.id,
+               r.code,
+               r.name,
+               p.id   permission_id,
+               p.code permission_code,
+               p.name permission_name,
+               p.url  permission_url
+        FROM role r
+                 left join role_permission rp on r.id = rp.role_id
+                 left join permission p on rp.permission_id = p.id
+    </select>
+
+
+    <!-- 通过 resultMap 标签的子标签 collection 配置 -->
+    <resultMap id="manyXml" type="vip.openpark.advanced.search.domain.OneToManyRoleDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <!--此处注意：
+            1.集合中的对象使用 ofType="" 不是 javaType="",
+            2.这里的 resultMap 是 mybatis 自动添加的命名空间，加上resultMap.id 可以获取 resultMap -->
+        <collection columnPrefix="permission_"
+                    property="permissionDOList"
+                    ofType="vip.openpark.advanced.search.domain.OneToManyPermissionDO"
+                    resultMap="vip.openpark.advanced.search.mapper.OneToManyPermissionDOMapper.all"/>
+    </resultMap>
+    <select id="selectWithManyXml" resultMap="manyXml">
+        SELECT r.id,
+               r.code,
+               r.name,
+               p.id   permission_id,
+               p.code permission_code,
+               p.name permission_name,
+               p.url  permission_url
+        FROM role r
+                 left join role_permission rp on r.id = rp.role_id
+                 left join permission p on rp.permission_id = p.id
+    </select>
+
 </mapper>

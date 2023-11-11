@@ -10,8 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import vip.openpark.advanced.search.domain.OneToManyUserDO;
-import vip.openpark.advanced.search.domain.OneToOneUserDO;
+import vip.openpark.advanced.search.domain.OneToManyRoleDO;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -24,7 +23,7 @@ import java.util.List;
 @Slf4j
 public class OneToManyTest {
 	private static SqlSession sqlSession;
-	private static OneToManyUserDOMapper oneToManyUserDOMapper;
+	private static OneToManyRoleDOMapper oneToManyRoleDOMapper;
 
 	/**
 	 * junit5 中 @BeforeAll 修饰的必须要是 static 方法。
@@ -37,7 +36,7 @@ public class OneToManyTest {
 		Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		sqlSession = sqlSessionFactory.openSession();
-		oneToManyUserDOMapper = sqlSession.getMapper(OneToManyUserDOMapper.class);
+		oneToManyRoleDOMapper = sqlSession.getMapper(OneToManyRoleDOMapper.class);
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class OneToManyTest {
 
 	@Test
 	public void selectWithOneXmlTest() {
-		List<OneToManyUserDO> dataList = oneToManyUserDOMapper.selectWithOneXml();
+		List<OneToManyRoleDO> dataList = oneToManyRoleDOMapper.selectWithOneXml();
 		Assertions.assertNotNull(dataList, "数据查询异常");
 
 		log.info("查询到数据总记录数：{}", dataList.size());
@@ -61,7 +60,7 @@ public class OneToManyTest {
 
 	@Test
 	public void selectWithManyXmlTest() {
-		List<OneToManyUserDO> dataList = oneToManyUserDOMapper.selectWithManyXml();
+		List<OneToManyRoleDO> dataList = oneToManyRoleDOMapper.selectWithManyXml();
 		Assertions.assertNotNull(dataList, "数据查询异常");
 
 		log.info("查询到数据总记录数：{}", dataList.size());

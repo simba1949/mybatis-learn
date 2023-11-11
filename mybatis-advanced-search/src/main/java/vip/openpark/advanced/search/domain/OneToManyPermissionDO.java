@@ -5,20 +5,20 @@ import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @author anthony
- * @version 2018/9/5 16:48
+ * @version 2023/11/9 19:31
  */
 @Data
-public class OneToManyRoleDO implements Serializable {
+public class OneToManyPermissionDO implements Serializable {
     @Serial
-    private static final long serialVersionUID = 7454240971789116908L;
+    private static final long serialVersionUID = -3087422575494783232L;
 
     private Long id;
     private String code;
     private String name;
+    private String url;
 
     private Byte blEnable;
     private Byte blDelete;
@@ -31,6 +31,4 @@ public class OneToManyRoleDO implements Serializable {
     private String modifier;
     private Long modifierId;
     private String modifierCode;
-
-    private List<OneToManyPermissionDO> permissionDOList;
 }

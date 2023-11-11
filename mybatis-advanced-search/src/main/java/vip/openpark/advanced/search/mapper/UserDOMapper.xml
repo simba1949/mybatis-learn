@@ -32,4 +32,11 @@
         <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode"/>
     </resultMap>
 
+    <sql id="allColumn">
+        `ID`, `CODE`, USERNAME, REAL_NAME, NICK_NAME, `PASSWORD`,
+        GENDER, BIRTHDAY, NATION, COUNTRY_NAME, ID_CARD, ADDRESS, PHONE, EMAIL,
+        BL_ENABLE, BL_DELETE, VERSION,
+        GMT_CREATE, CREATOR, CREATOR_ID, CREATOR_CODE,
+        GMT_MODIFY, MODIFIER, MODIFIER_ID, MODIFIER_CODE
+    </sql>
 </mapper>
