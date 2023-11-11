@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.openpark.cache.mybatis.self.mapper.UserDOMapper">
+    <!--
+    1.映射语句文件中的所有 select 语句的结果将会被缓存。
+    2.映射语句文件中的所有 insert、update 和 delete 语句会刷新缓存。
+    3.缓存会使用最近最少使用算法（LRU, Least Recently Used）算法来清除不需要的缓存。
+    4.缓存不会定时进行刷新（也就是说，没有刷新间隔）。
+    5.缓存会保存列表或对象（无论查询方法返回哪种）的 1024 个引用。
+    6.缓存会被视为读/写缓存，这意味着获取到的对象并不是共享的，可以安全地被调用者修改，而不干扰其他调用者或线程所做的潜在修改。
+    -->
+    <!--<cache/>-->
+
+    <resultMap id="all" type="vip.openpark.cache.mybatis.self.domain.UserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="gender" jdbcType="TINYINT" property="gender"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+        <result column="nation" jdbcType="VARCHAR" property="nation"/>
+        <result column="country_name" jdbcType="VARCHAR" property="countryName"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+
+        <result column="bl_enable" jdbcType="TINYINT" property="blEnable"/>
+        <result column="bl_delete" jdbcType="TINYINT" property="blDelete"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="creator_id" jdbcType="BIGINT" property="creatorId"/>
+        <result column="creator_code" jdbcType="VARCHAR" property="creatorCode"/>
+        <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify"/>
+        <result column="modifier" jdbcType="VARCHAR" property="modifier"/>
+        <result column="modifier_id" jdbcType="BIGINT" property="modifierId"/>
+        <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode"/>
+    </resultMap>
+
+    <sql id="allColumn">
+        ID, CODE, USERNAME, REAL_NAME, NICK_NAME, PASSWORD,
+        GENDER, BIRTHDAY, NATION, COUNTRY_NAME, ID_CARD, ADDRESS, PHONE, EMAIL,
+        BL_ENABLE, BL_DELETE, VERSION,
+        GMT_CREATE, CREATOR, CREATOR_ID, CREATOR_CODE,
+        GMT_MODIFY, MODIFIER, MODIFIER_ID, MODIFIER_CODE
+    </sql>
+
+    <select id="selectByPK" resultMap="all">
+        SELECT
+        <include refid="allColumn"/>
+        FROM user WHERE id = #{id}
+    </select>
+
+    <!-- flushCache	将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。-->
+    <select id="selectByPKWithFlushCacheIsTrue" resultMap="all" flushCache="true">
+        SELECT
+        <include refid="allColumn"/>
+        FROM user WHERE id = #{id}
+    </select>
+
+    <update id="updateByPk">
+        UPDATE user
+        <set>
+            <if test="null != code and '' != code">
+                code = #{code},
+            </if>
+            <if test="null != username and '' != username">
+                username = #{username},
+            </if>
+            <if test="null != realName and '' != realName">
+                real_name = #{realName},
+            </if>
+            <if test="null != nickName and '' != nickName">
+                nick_name = #{nickName},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

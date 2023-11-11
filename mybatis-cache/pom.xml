@@ -14,7 +14,7 @@
     </parent>
 
     <modules>
-        <module>mybatis-cache-first-level</module>
+        <module>mybatis-cache-with-mybatis-self</module>
         <module>mybatis-cache-ehcache</module>
         <module>mybatis-cache-redis</module>
     </modules>
