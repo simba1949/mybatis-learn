@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 配置 Mapper.xml 对应的接口全限定名 -->
+<mapper namespace="vip.openpark.advanced.search.mapper.NestedQueryMapper">
+
+    <!-- ################################### 一对一嵌套查询 开始 ################################### -->
+    <resultMap id="oneToOneNestedQueryUserResultMap" type="vip.openpark.advanced.search.domain.OneToOneUserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <!-- 通过 resultMap 标签的子标签 association 标签映射，
+            property是 User 中的属性，
+            javaType 是全限定名，
+            column 是将哪个字段的值传递给 select 指定的语句 -->
+        <association
+                property="oneToOneRoleDO"
+                javaType="vip.openpark.advanced.search.domain.OneToOneRoleDO"
+                column="id"
+                select="oneToOneNestedQueryRole"/>
+    </resultMap>
+
+    <!-- 嵌套查询，这里只查询 User -->
+    <select id="oneToOneNestedQueryUser" resultMap="oneToOneNestedQueryUserResultMap">
+        SELECT id,
+               code,
+               username,
+               real_name,
+               nick_name,
+               password
+        FROM user
+    </select>
+
+    <resultMap id="oneToOneNestedQueryRoleResultMap" type="vip.openpark.advanced.search.domain.OneToOneRoleDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <!-- 嵌套查询，这里通过 userId 查询 Role -->
+    <select id="oneToOneNestedQueryRole" resultMap="oneToOneNestedQueryRoleResultMap">
+        SELECT r.id,
+               r.code,
+               r.name
+        FROM role r
+                 LEFT JOIN user_role ur ON r.id = ur.role_id
+        WHERE ur.user_id = #{userId}
+    </select>
+    <!-- ################################### 一对一嵌套查询 结束 ################################### -->
+
+    <!-- ################################### 一对多嵌套查询 开始 ################################### -->
+    <!-- 通过 resultMap 标签的子标签 collection 配置 -->
+    <resultMap id="oneToManyNestedQueryRoleResultMap" type="vip.openpark.advanced.search.domain.OneToManyRoleDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+
+        <!-- 通过 resultMap 标签的子标签 collection 标签映射，
+            property是 User 中的属性，
+            ofType 是全限定名，注意这里使用 ofType，不是 javaType
+            column 是将哪个字段的值传递给 select 指定的语句 -->
+        <collection property="permissionDOList"
+                    ofType="vip.openpark.advanced.search.domain.OneToManyPermissionDO"
+                    column="id"
+                    select="oneToManyNestedQueryPermission"/>
+    </resultMap>
+    <select id="oneToManyNestedQueryRole" resultMap="oneToManyNestedQueryRoleResultMap">
+        SELECT id, name, code
+        FROM role
+    </select>
+
+    <resultMap id="oneToManyNestedQueryPermissionResultMap"
+               type="vip.openpark.advanced.search.domain.OneToManyPermissionDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+    </resultMap>
+    <select id="oneToManyNestedQueryPermission" resultMap="oneToManyNestedQueryPermissionResultMap">
+        SELECT p.id,
+               p.code,
+               p.name,
+               p.url
+        FROM permission p
+                 LEFT JOIN role_permission rp ON p.id = rp.permission_id
+        where rp.role_id = #{roleId}
+    </select>
+    <!-- ################################### 一对多嵌套查询 结束 ################################### -->
+</mapper>
