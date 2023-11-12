@@ -1,6 +1,7 @@
 package vip.openpark.interceptor.domain;
 
 import lombok.Data;
+import vip.openpark.interceptor.interceptor.OpenDesensitizationAnnotation;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,6 +31,7 @@ public class UserDO implements Serializable {
     /**
      * 用户登录名
      */
+    @OpenDesensitizationAnnotation
     @Column(name = "username")
     private String username;
 
@@ -48,6 +50,7 @@ public class UserDO implements Serializable {
     /**
      * 密码
      */
+    @OpenDesensitizationAnnotation
     @Column(name = "password")
     private String password;
 
@@ -90,6 +93,7 @@ public class UserDO implements Serializable {
     /**
      * 手机号码
      */
+    @OpenDesensitizationAnnotation
     @Column(name = "phone")
     private String phone;
 

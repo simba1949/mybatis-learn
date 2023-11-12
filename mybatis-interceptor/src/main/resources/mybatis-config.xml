@@ -40,6 +40,8 @@
         <plugin interceptor="vip.openpark.interceptor.interceptor.OpenPageInterceptor">
             <property name="someProperty" value="100"/>
         </plugin>
+        <plugin interceptor="vip.openpark.interceptor.interceptor.OpenDesensitizationInterceptor"/>
+        <plugin interceptor="vip.openpark.interceptor.interceptor.OpenSqlLogInterceptor"/>
     </plugins>
 
     <!-- 配置环境 -->
