@@ -15,20 +15,25 @@
     <build>
         <plugins>
             <plugin>
+                <!-- 配置 mybatis-generator 插件 -->
+                <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-maven-plugin -->
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
+                <version>1.4.2</version>
                 <configuration>
-                    <configurationFile>./src/main/resources/generator-config.xml</configurationFile>
                     <verbose>true</verbose>
+                    <!-- 是否覆盖之前的代码 -->
                     <overwrite>true</overwrite>
+                    <!-- 指定代码生成器配置文件 -->
+                    <configurationFile>./src/main/resources/generator-config.xml</configurationFile>
                 </configuration>
                 <dependencies>
-                    <!--配置数据库驱动-->
+                    <!-- 配置数据库驱动 -->
+                    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
                     <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.40</version>
+                        <groupId>com.mysql</groupId>
+                        <artifactId>mysql-connector-j</artifactId>
+                        <version>8.2.0</version>
                     </dependency>
                 </dependencies>
                 <executions>
