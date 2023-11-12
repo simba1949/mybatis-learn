@@ -17,6 +17,7 @@
         <module>mybatis-generator-cmd</module>
         <module>mybatis-generator-java</module>
         <module>mybatis-generator-maven</module>
+        <module>mybatis-generator-maven-integration</module>
     </modules>
 
 
