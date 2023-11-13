@@ -18,8 +18,6 @@
         <module>mybatis-generator</module>
         <module>mybatis-cache</module>
         <module>mybatis-integration</module>
-        <module>mybatis-integration/mybatis-integration-pagehelper</module>
-        <module>mybatis-integration/mybatis-integration-mapper</module>
     </modules>
 
     <properties>
