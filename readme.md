@@ -11,3 +11,4 @@
 * mybatis-cache：mybatis 缓存
 * mybatis-interceptor：mybatis 拦截器开发
 * mybatis-generator：mybatis 逆向工程
+* mybatis-integration：mybatis 基于 spring-boot 集成通用mapper、pagehelper、lombok
