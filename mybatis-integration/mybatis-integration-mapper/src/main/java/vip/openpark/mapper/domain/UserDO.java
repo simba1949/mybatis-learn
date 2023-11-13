@@ -1,9 +1,10 @@
-package vip.openpark.generator.maven.integration.domain;
+package vip.openpark.mapper.domain;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import javax.persistence.*;
-import lombok.Data;
 
 /**
  * 表名：user
@@ -36,13 +37,13 @@ public class UserDO implements Serializable {
      * 真实姓名
      */
     @Column(name = "real_name")
-    private String realName;
+    private String real_name;
 
     /**
      * 用户昵称
      */
     @Column(name = "nick_name")
-    private String nickName;
+    private String nick_name;
 
     /**
      * 密码
@@ -72,13 +73,13 @@ public class UserDO implements Serializable {
      * 国家
      */
     @Column(name = "country_name")
-    private String countryName;
+    private String country_name;
 
     /**
      * 身份证信息
      */
     @Column(name = "id_card")
-    private String idCard;
+    private String id_card;
 
     /**
      * 地址
@@ -102,13 +103,13 @@ public class UserDO implements Serializable {
      * 是否启用，0表示否，1表示是
      */
     @Column(name = "bl_enable")
-    private Byte blEnable;
+    private Byte bl_enable;
 
     /**
      * 是否删除，0表示否，1表示是
      */
     @Column(name = "bl_delete")
-    private Byte blDelete;
+    private Byte bl_delete;
 
     /**
      * 版本号
@@ -120,7 +121,7 @@ public class UserDO implements Serializable {
      * 创建时间
      */
     @Column(name = "gmt_create")
-    private LocalDateTime gmtCreate;
+    private LocalDateTime gmt_create;
 
     /**
      * 创建人真实姓名
@@ -132,19 +133,19 @@ public class UserDO implements Serializable {
      * 创建人ID
      */
     @Column(name = "creator_id")
-    private Long creatorId;
+    private Long creator_id;
 
     /**
      * 创建人code
      */
     @Column(name = "creator_code")
-    private String creatorCode;
+    private String creator_code;
 
     /**
      * 修改时间
      */
     @Column(name = "gmt_modify")
-    private LocalDateTime gmtModify;
+    private LocalDateTime gmt_modify;
 
     /**
      * 修改人真实姓名
@@ -156,13 +157,13 @@ public class UserDO implements Serializable {
      * 修改人ID
      */
     @Column(name = "modifier_id")
-    private Long modifierId;
+    private Long modifier_id;
 
     /**
      * 修改人code
      */
     @Column(name = "modifier_code")
-    private String modifierCode;
+    private String modifier_code;
 
     private static final long serialVersionUID = 1L;
 }

@@ -5,28 +5,28 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="real_name" jdbcType="VARCHAR" property="real_name" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nick_name" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="gender" jdbcType="TINYINT" property="gender" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="nation" jdbcType="VARCHAR" property="nation" />
-    <result column="country_name" jdbcType="VARCHAR" property="country_name" />
-    <result column="id_card" jdbcType="VARCHAR" property="id_card" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="bl_enable" jdbcType="TINYINT" property="bl_enable" />
-    <result column="bl_delete" jdbcType="TINYINT" property="bl_delete" />
+    <result column="bl_enable" jdbcType="TINYINT" property="blEnable" />
+    <result column="bl_delete" jdbcType="TINYINT" property="blDelete" />
     <result column="version" jdbcType="BIGINT" property="version" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmt_create" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="creator" jdbcType="VARCHAR" property="creator" />
-    <result column="creator_id" jdbcType="BIGINT" property="creator_id" />
-    <result column="creator_code" jdbcType="VARCHAR" property="creator_code" />
-    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmt_modify" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="creator_code" jdbcType="VARCHAR" property="creatorCode" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
     <result column="modifier" jdbcType="VARCHAR" property="modifier" />
-    <result column="modifier_id" jdbcType="BIGINT" property="modifier_id" />
-    <result column="modifier_code" jdbcType="VARCHAR" property="modifier_code" />
+    <result column="modifier_id" jdbcType="BIGINT" property="modifierId" />
+    <result column="modifier_code" jdbcType="VARCHAR" property="modifierCode" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
@@ -46,41 +46,41 @@
       gmt_modify, modifier, modifier_id, 
       modifier_code)
     values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{real_name,jdbcType=VARCHAR}, #{nick_name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{gender,jdbcType=TINYINT}, #{birthday,jdbcType=TIMESTAMP}, #{nation,jdbcType=VARCHAR}, 
-      #{country_name,jdbcType=VARCHAR}, #{id_card,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{bl_enable,jdbcType=TINYINT}, 
-      #{bl_delete,jdbcType=TINYINT}, #{version,jdbcType=BIGINT}, #{gmt_create,jdbcType=TIMESTAMP}, 
-      #{creator,jdbcType=VARCHAR}, #{creator_id,jdbcType=BIGINT}, #{creator_code,jdbcType=VARCHAR}, 
-      #{gmt_modify,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifier_id,jdbcType=BIGINT}, 
-      #{modifier_code,jdbcType=VARCHAR})
+      #{countryName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{blEnable,jdbcType=TINYINT}, 
+      #{blDelete,jdbcType=TINYINT}, #{version,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creatorCode,jdbcType=VARCHAR}, 
+      #{gmtModify,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifierId,jdbcType=BIGINT}, 
+      #{modifierCode,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="vip.openpark.generator.maven.domain.UserDO">
     update user
     set code = #{code,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
-      real_name = #{real_name,jdbcType=VARCHAR},
-      nick_name = #{nick_name,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=TINYINT},
       birthday = #{birthday,jdbcType=TIMESTAMP},
       nation = #{nation,jdbcType=VARCHAR},
-      country_name = #{country_name,jdbcType=VARCHAR},
-      id_card = #{id_card,jdbcType=VARCHAR},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      bl_enable = #{bl_enable,jdbcType=TINYINT},
-      bl_delete = #{bl_delete,jdbcType=TINYINT},
+      bl_enable = #{blEnable,jdbcType=TINYINT},
+      bl_delete = #{blDelete,jdbcType=TINYINT},
       version = #{version,jdbcType=BIGINT},
-      gmt_create = #{gmt_create,jdbcType=TIMESTAMP},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       creator = #{creator,jdbcType=VARCHAR},
-      creator_id = #{creator_id,jdbcType=BIGINT},
-      creator_code = #{creator_code,jdbcType=VARCHAR},
-      gmt_modify = #{gmt_modify,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      creator_code = #{creatorCode,jdbcType=VARCHAR},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
       modifier = #{modifier,jdbcType=VARCHAR},
-      modifier_id = #{modifier_id,jdbcType=BIGINT},
-      modifier_code = #{modifier_code,jdbcType=VARCHAR}
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modifier_code = #{modifierCode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

@@ -10,9 +10,9 @@ public class UserDO implements Serializable {
 
     private String username;
 
-    private String real_name;
+    private String realName;
 
-    private String nick_name;
+    private String nickName;
 
     private String password;
 
@@ -22,9 +22,9 @@ public class UserDO implements Serializable {
 
     private String nation;
 
-    private String country_name;
+    private String countryName;
 
-    private String id_card;
+    private String idCard;
 
     private String address;
 
@@ -32,27 +32,27 @@ public class UserDO implements Serializable {
 
     private String email;
 
-    private Byte bl_enable;
+    private Byte blEnable;
 
-    private Byte bl_delete;
+    private Byte blDelete;
 
     private Long version;
 
-    private LocalDateTime gmt_create;
+    private LocalDateTime gmtCreate;
 
     private String creator;
 
-    private Long creator_id;
+    private Long creatorId;
 
-    private String creator_code;
+    private String creatorCode;
 
-    private LocalDateTime gmt_modify;
+    private LocalDateTime gmtModify;
 
     private String modifier;
 
-    private Long modifier_id;
+    private Long modifierId;
 
-    private String modifier_code;
+    private String modifierCode;
 
     private static final long serialVersionUID = 1L;
 
@@ -80,20 +80,20 @@ public class UserDO implements Serializable {
         this.username = username;
     }
 
-    public String getReal_name() {
-        return real_name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setReal_name(String real_name) {
-        this.real_name = real_name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
-    public String getNick_name() {
-        return nick_name;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNick_name(String nick_name) {
-        this.nick_name = nick_name;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getPassword() {
@@ -128,20 +128,20 @@ public class UserDO implements Serializable {
         this.nation = nation;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    public String getId_card() {
-        return id_card;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setId_card(String id_card) {
-        this.id_card = id_card;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public String getAddress() {
@@ -168,20 +168,20 @@ public class UserDO implements Serializable {
         this.email = email;
     }
 
-    public Byte getBl_enable() {
-        return bl_enable;
+    public Byte getBlEnable() {
+        return blEnable;
     }
 
-    public void setBl_enable(Byte bl_enable) {
-        this.bl_enable = bl_enable;
+    public void setBlEnable(Byte blEnable) {
+        this.blEnable = blEnable;
     }
 
-    public Byte getBl_delete() {
-        return bl_delete;
+    public Byte getBlDelete() {
+        return blDelete;
     }
 
-    public void setBl_delete(Byte bl_delete) {
-        this.bl_delete = bl_delete;
+    public void setBlDelete(Byte blDelete) {
+        this.blDelete = blDelete;
     }
 
     public Long getVersion() {
@@ -192,12 +192,12 @@ public class UserDO implements Serializable {
         this.version = version;
     }
 
-    public LocalDateTime getGmt_create() {
-        return gmt_create;
+    public LocalDateTime getGmtCreate() {
+        return gmtCreate;
     }
 
-    public void setGmt_create(LocalDateTime gmt_create) {
-        this.gmt_create = gmt_create;
+    public void setGmtCreate(LocalDateTime gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
     public String getCreator() {
@@ -208,28 +208,28 @@ public class UserDO implements Serializable {
         this.creator = creator;
     }
 
-    public Long getCreator_id() {
-        return creator_id;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreator_id(Long creator_id) {
-        this.creator_id = creator_id;
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getCreator_code() {
-        return creator_code;
+    public String getCreatorCode() {
+        return creatorCode;
     }
 
-    public void setCreator_code(String creator_code) {
-        this.creator_code = creator_code;
+    public void setCreatorCode(String creatorCode) {
+        this.creatorCode = creatorCode;
     }
 
-    public LocalDateTime getGmt_modify() {
-        return gmt_modify;
+    public LocalDateTime getGmtModify() {
+        return gmtModify;
     }
 
-    public void setGmt_modify(LocalDateTime gmt_modify) {
-        this.gmt_modify = gmt_modify;
+    public void setGmtModify(LocalDateTime gmtModify) {
+        this.gmtModify = gmtModify;
     }
 
     public String getModifier() {
@@ -240,20 +240,20 @@ public class UserDO implements Serializable {
         this.modifier = modifier;
     }
 
-    public Long getModifier_id() {
-        return modifier_id;
+    public Long getModifierId() {
+        return modifierId;
     }
 
-    public void setModifier_id(Long modifier_id) {
-        this.modifier_id = modifier_id;
+    public void setModifierId(Long modifierId) {
+        this.modifierId = modifierId;
     }
 
-    public String getModifier_code() {
-        return modifier_code;
+    public String getModifierCode() {
+        return modifierCode;
     }
 
-    public void setModifier_code(String modifier_code) {
-        this.modifier_code = modifier_code;
+    public void setModifierCode(String modifierCode) {
+        this.modifierCode = modifierCode;
     }
 
     @Override
@@ -271,28 +271,28 @@ public class UserDO implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getCode() == null ? other.getCode() == null : this.getCode().equals(other.getCode()))
             && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getReal_name() == null ? other.getReal_name() == null : this.getReal_name().equals(other.getReal_name()))
-            && (this.getNick_name() == null ? other.getNick_name() == null : this.getNick_name().equals(other.getNick_name()))
+            && (this.getRealName() == null ? other.getRealName() == null : this.getRealName().equals(other.getRealName()))
+            && (this.getNickName() == null ? other.getNickName() == null : this.getNickName().equals(other.getNickName()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
             && (this.getBirthday() == null ? other.getBirthday() == null : this.getBirthday().equals(other.getBirthday()))
             && (this.getNation() == null ? other.getNation() == null : this.getNation().equals(other.getNation()))
-            && (this.getCountry_name() == null ? other.getCountry_name() == null : this.getCountry_name().equals(other.getCountry_name()))
-            && (this.getId_card() == null ? other.getId_card() == null : this.getId_card().equals(other.getId_card()))
+            && (this.getCountryName() == null ? other.getCountryName() == null : this.getCountryName().equals(other.getCountryName()))
+            && (this.getIdCard() == null ? other.getIdCard() == null : this.getIdCard().equals(other.getIdCard()))
             && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
-            && (this.getBl_enable() == null ? other.getBl_enable() == null : this.getBl_enable().equals(other.getBl_enable()))
-            && (this.getBl_delete() == null ? other.getBl_delete() == null : this.getBl_delete().equals(other.getBl_delete()))
+            && (this.getBlEnable() == null ? other.getBlEnable() == null : this.getBlEnable().equals(other.getBlEnable()))
+            && (this.getBlDelete() == null ? other.getBlDelete() == null : this.getBlDelete().equals(other.getBlDelete()))
             && (this.getVersion() == null ? other.getVersion() == null : this.getVersion().equals(other.getVersion()))
-            && (this.getGmt_create() == null ? other.getGmt_create() == null : this.getGmt_create().equals(other.getGmt_create()))
+            && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getCreator() == null ? other.getCreator() == null : this.getCreator().equals(other.getCreator()))
-            && (this.getCreator_id() == null ? other.getCreator_id() == null : this.getCreator_id().equals(other.getCreator_id()))
-            && (this.getCreator_code() == null ? other.getCreator_code() == null : this.getCreator_code().equals(other.getCreator_code()))
-            && (this.getGmt_modify() == null ? other.getGmt_modify() == null : this.getGmt_modify().equals(other.getGmt_modify()))
+            && (this.getCreatorId() == null ? other.getCreatorId() == null : this.getCreatorId().equals(other.getCreatorId()))
+            && (this.getCreatorCode() == null ? other.getCreatorCode() == null : this.getCreatorCode().equals(other.getCreatorCode()))
+            && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getModifier() == null ? other.getModifier() == null : this.getModifier().equals(other.getModifier()))
-            && (this.getModifier_id() == null ? other.getModifier_id() == null : this.getModifier_id().equals(other.getModifier_id()))
-            && (this.getModifier_code() == null ? other.getModifier_code() == null : this.getModifier_code().equals(other.getModifier_code()));
+            && (this.getModifierId() == null ? other.getModifierId() == null : this.getModifierId().equals(other.getModifierId()))
+            && (this.getModifierCode() == null ? other.getModifierCode() == null : this.getModifierCode().equals(other.getModifierCode()));
     }
 
     @Override
@@ -302,28 +302,28 @@ public class UserDO implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getCode() == null) ? 0 : getCode().hashCode());
         result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getReal_name() == null) ? 0 : getReal_name().hashCode());
-        result = prime * result + ((getNick_name() == null) ? 0 : getNick_name().hashCode());
+        result = prime * result + ((getRealName() == null) ? 0 : getRealName().hashCode());
+        result = prime * result + ((getNickName() == null) ? 0 : getNickName().hashCode());
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getGender() == null) ? 0 : getGender().hashCode());
         result = prime * result + ((getBirthday() == null) ? 0 : getBirthday().hashCode());
         result = prime * result + ((getNation() == null) ? 0 : getNation().hashCode());
-        result = prime * result + ((getCountry_name() == null) ? 0 : getCountry_name().hashCode());
-        result = prime * result + ((getId_card() == null) ? 0 : getId_card().hashCode());
+        result = prime * result + ((getCountryName() == null) ? 0 : getCountryName().hashCode());
+        result = prime * result + ((getIdCard() == null) ? 0 : getIdCard().hashCode());
         result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
-        result = prime * result + ((getBl_enable() == null) ? 0 : getBl_enable().hashCode());
-        result = prime * result + ((getBl_delete() == null) ? 0 : getBl_delete().hashCode());
+        result = prime * result + ((getBlEnable() == null) ? 0 : getBlEnable().hashCode());
+        result = prime * result + ((getBlDelete() == null) ? 0 : getBlDelete().hashCode());
         result = prime * result + ((getVersion() == null) ? 0 : getVersion().hashCode());
-        result = prime * result + ((getGmt_create() == null) ? 0 : getGmt_create().hashCode());
+        result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getCreator() == null) ? 0 : getCreator().hashCode());
-        result = prime * result + ((getCreator_id() == null) ? 0 : getCreator_id().hashCode());
-        result = prime * result + ((getCreator_code() == null) ? 0 : getCreator_code().hashCode());
-        result = prime * result + ((getGmt_modify() == null) ? 0 : getGmt_modify().hashCode());
+        result = prime * result + ((getCreatorId() == null) ? 0 : getCreatorId().hashCode());
+        result = prime * result + ((getCreatorCode() == null) ? 0 : getCreatorCode().hashCode());
+        result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getModifier() == null) ? 0 : getModifier().hashCode());
-        result = prime * result + ((getModifier_id() == null) ? 0 : getModifier_id().hashCode());
-        result = prime * result + ((getModifier_code() == null) ? 0 : getModifier_code().hashCode());
+        result = prime * result + ((getModifierId() == null) ? 0 : getModifierId().hashCode());
+        result = prime * result + ((getModifierCode() == null) ? 0 : getModifierCode().hashCode());
         return result;
     }
 
@@ -336,28 +336,28 @@ public class UserDO implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", code=").append(code);
         sb.append(", username=").append(username);
-        sb.append(", real_name=").append(real_name);
-        sb.append(", nick_name=").append(nick_name);
+        sb.append(", realName=").append(realName);
+        sb.append(", nickName=").append(nickName);
         sb.append(", password=").append(password);
         sb.append(", gender=").append(gender);
         sb.append(", birthday=").append(birthday);
         sb.append(", nation=").append(nation);
-        sb.append(", country_name=").append(country_name);
-        sb.append(", id_card=").append(id_card);
+        sb.append(", countryName=").append(countryName);
+        sb.append(", idCard=").append(idCard);
         sb.append(", address=").append(address);
         sb.append(", phone=").append(phone);
         sb.append(", email=").append(email);
-        sb.append(", bl_enable=").append(bl_enable);
-        sb.append(", bl_delete=").append(bl_delete);
+        sb.append(", blEnable=").append(blEnable);
+        sb.append(", blDelete=").append(blDelete);
         sb.append(", version=").append(version);
-        sb.append(", gmt_create=").append(gmt_create);
+        sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", creator=").append(creator);
-        sb.append(", creator_id=").append(creator_id);
-        sb.append(", creator_code=").append(creator_code);
-        sb.append(", gmt_modify=").append(gmt_modify);
+        sb.append(", creatorId=").append(creatorId);
+        sb.append(", creatorCode=").append(creatorCode);
+        sb.append(", gmtModify=").append(gmtModify);
         sb.append(", modifier=").append(modifier);
-        sb.append(", modifier_id=").append(modifier_id);
-        sb.append(", modifier_code=").append(modifier_code);
+        sb.append(", modifierId=").append(modifierId);
+        sb.append(", modifierCode=").append(modifierCode);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

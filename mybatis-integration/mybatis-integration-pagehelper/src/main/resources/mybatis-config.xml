@@ -19,14 +19,12 @@
         <!-- 使用日志组件：value 包括 SLF4J、LOG4J、LOG4J2、STDOUT_LOGGING-->
         <!-- STDOUT_LOGGING 表示标准日志 -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
-        <!-- 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典Java 属性名 aColumn 的类似映射 -->
-        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
     <!-- 实体类别名设置 -->
     <typeAliases>
         <!-- 推荐使用包配置 -->
-        <package name="vip.openpark.generator.maven.integration.domain"/>
+        <package name="vip.openpark.pagehelper.domain"/>
     </typeAliases>
 
     <!-- 类型处理器（略）-->
@@ -58,7 +56,7 @@
             <dataSource type="POOLED">
                 <!-- 这里也可以覆盖 -->
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://192.168.8.35:3306/example"/>
+                <property name="url" value="jdbc:mysql://172.17.35.120:3306/example"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
                 <!-- 事务隔离级别，默认数据库事务隔离级别-->
@@ -69,6 +67,6 @@
 
     <!--映射器（mappers）-->
     <mappers>
-        <package name="vip.openpark.generator.maven.integration.mapper"/>
+        <package name="vip.openpark.pagehelper.mapper"/>
     </mappers>
 </configuration>

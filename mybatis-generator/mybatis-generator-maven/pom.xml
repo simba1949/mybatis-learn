@@ -21,6 +21,7 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.4.2</version>
                 <configuration>
+                    <!-- 如果为真，则MBG会将进度消息写入构建日志。 -->
                     <verbose>true</verbose>
                     <!-- 是否覆盖之前的代码 -->
                     <overwrite>true</overwrite>
