@@ -115,6 +115,8 @@
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
+                        <!-- 在maven哪个生命周期中执行插件 -->
+                        <phase>deploy</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
